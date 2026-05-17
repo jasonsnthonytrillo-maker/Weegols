@@ -288,9 +288,11 @@ export default function Menu() {
 
             <button
               onClick={toggleLanguage}
-              className="flex items-center gap-1.5 px-3 py-2 md:px-4 md:py-3 bg-white rounded-full text-xs md:text-sm font-black text-surface-700 shadow-sm border border-surface-200 hover:border-primary-300 hover:shadow-md transition-all active:scale-95"
+              className="flex items-center gap-2 px-3 py-2 md:px-4 md:py-3 bg-white rounded-full text-xs md:text-sm font-black shadow-sm border border-surface-200 hover:border-primary-300 hover:shadow-md transition-all active:scale-95"
             >
-              <span>{lang === 'en' ? '🇵🇭 PH' : '🇺🇸 EN'}</span>
+              <span className={lang === 'en' ? 'text-primary-500' : 'text-surface-400'} style={lang === 'en' ? { color: brandingColor } : {}}>EN</span>
+              <span className="text-surface-300 font-normal">|</span>
+              <span className={lang === 'tl' ? 'text-primary-500' : 'text-surface-400'} style={lang === 'tl' ? { color: brandingColor } : {}}>TL</span>
             </button>
           </div>
 
