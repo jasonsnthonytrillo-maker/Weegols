@@ -1,42 +1,8 @@
-// Vercel Serverless Function — serves OG meta tags for social media crawlers
-// When shared on Facebook/Messenger, this URL shows the tenant's OG image
-// Regular users get instantly redirected to the actual SPA
-
-export default async function handler(req, res) {
-  const { slug } = req.query;
-
-  if (!slug) {
-    return res.redirect('/');
-  }
-
-  // Try both env var names (VITE_ is build-time, but Vercel makes all env vars available to serverless)
-  const apiUrl = process.env.VITE_API_URL || process.env.API_URL || 'http://localhost:5000/api';
-
-  let title = 'PROJECT MILLION';
-  let description = 'Professional Multi-Tenant Point of Sale System';
-  let image = 'https://cdn-icons-png.flaticon.com/512/5787/5787016.png';
-
-  try {
-    const response = await fetch(`${apiUrl}/public/tenant/${slug}`);
-    const data = await response.json();
-
-    if (data.success && data.data) {
-      const tenant = data.data;
-      title = tenant.name || title;
-      description = `Order from ${title} — Self-Service Kiosk`;
-      image = tenant.ogImage || tenant.logo || image;
-    }
-    
-    // Resolve relative path to absolute URL
-    if (image && image.startsWith('/')) {
-      image = `https://${req.headers.host}${image}`;
-    }
-  } catch (e) {
-    // Fallback to defaults if API call fails
-    console.error('OG fetch error:', e.message);
-  }
-
-  const siteUrl = `https://${req.headers.host}/?tenant=${slug}`;
+export default function handler(req, res) {
+  const title = 'HOMETOWN BREW POS';
+  const description = 'Professional Point of Sale System';
+  const image = 'https://hometownbrew.vercel.app/favicon.png';
+  const siteUrl = 'https://hometownbrew.vercel.app/';
 
   // Return HTML with OG tags + instant redirect for regular users
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
@@ -60,6 +26,7 @@ export default async function handler(req, res) {
 </head>
 <body>
   <p>Redirecting to <a href="${siteUrl}">${title}</a>...</p>
+  <script>window.location.href = "${siteUrl}";</script>
 </body>
 </html>`);
 }
