@@ -96,7 +96,7 @@ router.get('/', async (req, res) => {
         secondaryColor: tenant?.secondaryColor,
         bannerImage: tenant?.bannerImage,
         seasonal_effect: seasonalEffect,
-        pointsRate: pointsRate
+        points_rate: pointsRate
       }
     });
   } catch (error) {
