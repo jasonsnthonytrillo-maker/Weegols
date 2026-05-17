@@ -156,6 +156,7 @@ router.post('/orders/:id/confirm', authenticate, authorize('cashier', 'admin'), 
     currentStep = 'creating audit log';
     await prisma.auditLog.create({
       data: {
+        tenantId: req.tenantId,
         userId: req.user.id,
         action: 'confirm_order',
         entityType: 'order',
@@ -269,6 +270,7 @@ router.post('/orders/:id/cancel', authenticate, authorize('cashier', 'admin'), a
 
     await prisma.auditLog.create({
       data: {
+        tenantId: req.tenantId,
         userId: req.user.id,
         action: 'cancel_order',
         entityType: 'order',

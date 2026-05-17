@@ -199,6 +199,7 @@ router.post('/login', async (req, res) => {
     try {
       await prisma.auditLog.create({
         data: { 
+          tenantId: user.tenantId || 1,
           userId: user.id, 
           action: 'login', 
           entityType: 'user', 
@@ -601,7 +602,14 @@ router.post('/change-password', authenticate, async (req, res) => {
     });
 
     await prisma.auditLog.create({
-      data: { userId: user.id, action: 'change_password', entityType: 'user', entityId: user.id.toString(), details: 'User changed their password' }
+      data: { 
+        tenantId: user.tenantId || 1,
+        userId: user.id, 
+        action: 'change_password', 
+        entityType: 'user', 
+        entityId: user.id.toString(), 
+        details: 'User changed their password' 
+      }
     });
 
     res.json({ success: true, message: 'Password changed successfully.' });

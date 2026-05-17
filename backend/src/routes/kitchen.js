@@ -43,6 +43,7 @@ router.post('/orders/:id/start', authenticate, authorize('kitchen', 'admin'), as
 
     await prisma.auditLog.create({
       data: {
+        tenantId: req.tenantId,
         userId: req.user.id,
         action: 'kitchen_start',
         entityType: 'order',
@@ -77,6 +78,7 @@ router.post('/orders/:id/complete', authenticate, authorize('kitchen', 'admin'),
 
     await prisma.auditLog.create({
       data: {
+        tenantId: req.tenantId,
         userId: req.user.id,
         action: 'kitchen_complete',
         entityType: 'order',
@@ -106,6 +108,7 @@ router.post('/orders/:id/served', authenticate, authorize('kitchen', 'admin', 'c
 
     await prisma.auditLog.create({
       data: {
+        tenantId: req.tenantId,
         userId: req.user.id,
         action: 'order_served',
         entityType: 'order',

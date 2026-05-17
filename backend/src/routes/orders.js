@@ -192,6 +192,7 @@ router.post('/', async (req, res) => {
     // Audit log
     await prisma.auditLog.create({
       data: {
+        tenantId,
         userId: validCustomerId,
         action: 'order_placed',
         entityType: 'order',
