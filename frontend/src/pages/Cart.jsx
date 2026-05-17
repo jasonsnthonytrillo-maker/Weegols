@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 import { getPublicTenant, getProducts } from '../services/api';
 
 export default function Cart() {
-  const { items, updateQuantity, removeFromCart, toggleRedemption, clearCart, getSubtotal, getItemCount, getTotalPointsCost } = useCart();
+  const { items, updateQuantity, removeFromCart, toggleRedemption, clearCart, getSubtotal, getItemCount, getTotalPointsCost, addToCart } = useCart();
   const { user } = useAuth();
   const [searchParams] = useSearchParams();
   const tenantSlug = searchParams.get('tenant');
