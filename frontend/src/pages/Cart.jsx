@@ -3,7 +3,7 @@ import { useCart } from '../context/CartContext';
 import { formatCurrency } from '../utils/helpers';
 import { useAuth } from '../context/AuthContext';
 import { useState, useEffect } from 'react';
-import { getPublicTenant } from '../services/api';
+import { getPublicTenant, getProducts } from '../services/api';
 
 export default function Cart() {
   const { items, updateQuantity, removeFromCart, toggleRedemption, clearCart, getSubtotal, getItemCount, getTotalPointsCost } = useCart();
@@ -24,6 +24,64 @@ export default function Cart() {
       });
     }
   }, [tenantSlug]);
+
+  const [recommendations, setRecommendations] = useState([]);
+
+  useEffect(() => {
+    getProducts().then(res => {
+      if (res.data && res.data.success) {
+        const allProducts = (res.data.data || []).flatMap(c => 
+          (c.products || []).map(p => ({ ...p, categoryName: c.name.toLowerCase() }))
+        );
+        
+        // 1. Identify what categories are in the cart
+        const cartProductIds = new Set(items.map(i => i.id));
+        const cartCategoryNames = new Set(items.map(i => {
+          const matched = allProducts.find(p => p.id === i.id);
+          return matched ? matched.categoryName : '';
+        }));
+
+        let suggested = [];
+
+        // Rule A: If cart has a Main/Burger but NO Drinks
+        const hasMain = cartCategoryNames.has('burgers') || cartCategoryNames.has('mains') || cartCategoryNames.has('combo') || cartCategoryNames.has('pizza') || cartCategoryNames.has('meals');
+        const hasDrink = cartCategoryNames.has('drinks') || cartCategoryNames.has('beverages');
+        const hasSide = cartCategoryNames.has('sides') || cartCategoryNames.has('snacks') || cartCategoryNames.has('appetizers');
+
+        if (hasMain && !hasDrink) {
+          suggested = allProducts.filter(p => 
+            (p.categoryName === 'drinks' || p.categoryName === 'beverages') && 
+            !cartProductIds.has(p.id) && p.available && p.stock > 0
+          );
+        } 
+        
+        // Rule B: If cart has a Main but NO Sides
+        if (suggested.length === 0 && hasMain && !hasSide) {
+          suggested = allProducts.filter(p => 
+            (p.categoryName === 'sides' || p.categoryName === 'snacks' || p.categoryName === 'appetizers') && 
+            !cartProductIds.has(p.id) && p.available && p.stock > 0
+          );
+        }
+
+        // Rule C: If they have a Drink but NO Food
+        if (suggested.length === 0 && hasDrink && !hasMain) {
+          suggested = allProducts.filter(p => 
+            (p.categoryName === 'burgers' || p.categoryName === 'mains' || p.categoryName === 'combo') && 
+            !cartProductIds.has(p.id) && p.available && p.stock > 0
+          );
+        }
+
+        // Rule D: Fallback - Popular items (not in cart)
+        if (suggested.length === 0) {
+          suggested = allProducts.filter(p => 
+            !cartProductIds.has(p.id) && p.available && p.stock > 0
+          );
+        }
+
+        setRecommendations(suggested.slice(0, 4));
+      }
+    }).catch(err => console.error('Failed to load upselling recommendations:', err));
+  }, [items]);
 
   const brandingColor = branding?.primaryColor || '#f97316';
   const menuLink = tenantSlug ? `/menu?tenant=${tenantSlug}` : '/menu';
@@ -125,6 +183,37 @@ export default function Cart() {
             Clear Cart
           </button>
         </div>
+
+        {/* Smart Upsell Carousel */}
+        {recommendations.length > 0 && (
+          <div className="mt-12 mb-8 animate-fade-in-up" style={{ animationDelay: `${items.length * 0.05 + 0.1}s` }}>
+            <h3 className="font-heading font-black text-slate-800 text-lg md:text-2xl mb-4 flex items-center gap-2">
+              <span className="w-1.5 h-6 rounded-full" style={{ backgroundColor: brandingColor }}></span>
+              🔥 Frequently Added Together
+            </h3>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {recommendations.map(rec => (
+                <div key={rec.id} className="bg-white border border-surface-200 rounded-[2rem] p-3 sm:p-4 flex flex-col justify-between hover:shadow-lg transition-all group relative overflow-hidden">
+                  <div className="aspect-[4/3] rounded-[1.5rem] overflow-hidden bg-surface-50 mb-3 relative">
+                    <img src={rec.image || 'https://via.placeholder.com/150'} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-xs sm:text-sm line-clamp-1 mb-1">{rec.name}</h4>
+                    <p className="font-black text-xs sm:text-sm mb-3" style={{ color: brandingColor }}>{formatCurrency(rec.price)}</p>
+                  </div>
+                  <button
+                    onClick={() => addToCart(rec)}
+                    className="w-full py-2 rounded-xl text-xs font-black uppercase tracking-wider flex items-center justify-center gap-1 transition-all active:scale-95 border border-slate-200 text-slate-700 hover:text-white"
+                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = brandingColor; e.currentTarget.style.borderColor = 'transparent'; e.currentTarget.style.color = '#fff'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = ''; e.currentTarget.style.borderColor = ''; e.currentTarget.style.color = ''; }}
+                  >
+                    <span>+ Add</span>
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Bottom checkout bar */}
