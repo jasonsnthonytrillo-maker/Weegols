@@ -102,6 +102,7 @@ model Product {
   asOptionIn    ComboOption[]  @relation("OptionProduct")
   
   costPrice     Float          @default(0) // Internal cost of product
+  tags          String?        // Comma-separated dietary/allergen badges (e.g. spicy,halal,recommended)
 }
 
 model ProductAddon {

@@ -85,7 +85,7 @@ router.get('/products', authenticate, authorize('admin'), async (req, res) => {
 
 router.post('/products', authenticate, authorize('admin'), async (req, res) => {
   try {
-    const { name, description, price, costPrice, image, categoryId, stock, available, pointsCost, addons, isCombo, comboGroup1Name, comboGroup2Name } = req.body;
+    const { name, description, price, costPrice, image, categoryId, stock, available, pointsCost, addons, isCombo, comboGroup1Name, comboGroup2Name, tags } = req.body;
     if (!name || !price || !categoryId) {
       return res.status(400).json({ success: false, message: 'Name, price, and category are required.' });
     }
@@ -100,6 +100,7 @@ router.post('/products', authenticate, authorize('admin'), async (req, res) => {
         isCombo: isCombo || false,
         comboGroup1Name: comboGroup1Name || null,
         comboGroup2Name: comboGroup2Name || null,
+        tags: tags || null,
         addons: addons ? { create: addons.map(a => ({ tenantId: req.tenantId, name: a.name, price: parseFloat(a.price) })) } : undefined
       },
       include: { category: true, addons: true }
@@ -116,7 +117,7 @@ router.post('/products', authenticate, authorize('admin'), async (req, res) => {
 
 router.put('/products/:id', authenticate, authorize('admin'), async (req, res) => {
   try {
-    const { name, description, price, costPrice, image, categoryId, stock, available, pointsCost, addons, isCombo, comboGroup1Name, comboGroup2Name } = req.body;
+    const { name, description, price, costPrice, image, categoryId, stock, available, pointsCost, addons, isCombo, comboGroup1Name, comboGroup2Name, tags } = req.body;
 
     // Handle addons: Delete old ones and create new ones (sync)
     if (addons) {
@@ -140,6 +141,7 @@ router.put('/products/:id', authenticate, authorize('admin'), async (req, res) =
         isCombo: isCombo !== undefined ? isCombo : undefined,
         comboGroup1Name: comboGroup1Name !== undefined ? comboGroup1Name : undefined,
         comboGroup2Name: comboGroup2Name !== undefined ? comboGroup2Name : undefined,
+        tags: tags !== undefined ? tags : undefined,
         addons: addons ? { 
           create: addons.map(a => ({ 
             tenantId: req.tenantId, 

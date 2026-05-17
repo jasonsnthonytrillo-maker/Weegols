@@ -428,6 +428,48 @@ export default function Menu() {
                         src={product.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=1000&auto=format&fit=crop'}
                         className="w-full h-full object-cover"
                       />
+                      {product.tags && (
+                        <div className="absolute top-2 right-2 z-10 flex flex-wrap gap-1 max-w-[75%] justify-end">
+                          {product.tags.split(',').map(tag => {
+                            if (tag === 'recommended') return (
+                              <span key={tag} className="bg-amber-500 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Best Seller">
+                                ⭐
+                              </span>
+                            );
+                            if (tag === 'spicy') return (
+                              <span key={tag} className="bg-red-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Spicy">
+                                🌶️
+                              </span>
+                            );
+                            if (tag === 'halal') return (
+                              <span key={tag} className="bg-emerald-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Halal Certified">
+                                🕌
+                              </span>
+                            );
+                            if (tag === 'sugar_free') return (
+                              <span key={tag} className="bg-cyan-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Sugar-Free">
+                                🍬
+                              </span>
+                            );
+                            if (tag === 'gluten_free') return (
+                              <span key={tag} className="bg-yellow-600 text-slate-900 text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Gluten-Free">
+                                🌾
+                              </span>
+                            );
+                            if (tag === 'nuts') return (
+                              <span key={tag} className="bg-amber-800 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Contains Nuts">
+                                🥜
+                              </span>
+                            );
+                            if (tag === 'vegan') return (
+                              <span key={tag} className="bg-lime-600 text-white text-[9px] font-black px-1.5 py-0.5 rounded shadow-md uppercase tracking-wider flex items-center gap-0.5" title="Vegan">
+                                🌿
+                              </span>
+                            );
+                            return null;
+                          })}
+                        </div>
+                      )}
                       {product.pointsCost && isCustomer && (
                         <div className="absolute top-3 left-3 bg-amber-500 text-white text-[10px] font-black px-2 py-1 rounded-lg shadow-lg flex items-center gap-1">
                           💎 {product.pointsCost} PTS
@@ -512,6 +554,29 @@ export default function Menu() {
             </div>
 
             <div className="p-6 overflow-y-auto flex-1 scrollbar-hide">
+              {/* Full-Sized Badges in Details Panel */}
+              {selectedProduct.tags && (
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {selectedProduct.tags.split(',').map(tag => {
+                    const badgeStyles = {
+                      recommended: { text: 'Best Seller', icon: '⭐', style: 'bg-amber-500 text-white' },
+                      spicy: { text: 'Spicy', icon: '🌶️', style: 'bg-red-600 text-white' },
+                      halal: { text: 'Halal Certified', icon: '🕌', style: 'bg-emerald-600 text-white' },
+                      sugar_free: { text: 'Sugar-Free', icon: '🍬', style: 'bg-cyan-600 text-white' },
+                      gluten_free: { text: 'Gluten-Free', icon: '🌾', style: 'bg-yellow-500 text-slate-900' },
+                      nuts: { text: 'Contains Nuts', icon: '🥜', style: 'bg-amber-800 text-white' },
+                      vegan: { text: 'Vegan', icon: '🌿', style: 'bg-lime-600 text-white' }
+                    }[tag];
+                    if (!badgeStyles) return null;
+                    return (
+                      <span key={tag} className={`text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 ${badgeStyles.style}`}>
+                        {badgeStyles.icon} {badgeStyles.text}
+                      </span>
+                    );
+                  })}
+                </div>
+              )}
+
               {selectedProduct.isCombo ? (
                 <div className="space-y-6">
                   {/* Combo Step Progress */}

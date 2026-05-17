@@ -113,7 +113,7 @@ export default function ProductsTab() {
   };
 
   const handleAdd = () => {
-    setCurrentProduct({ name: '', description: '', price: '', costPrice: '', image: '', categoryId: '', stock: 100, available: true, isCombo: false });
+    setCurrentProduct({ name: '', description: '', price: '', costPrice: '', image: '', categoryId: '', stock: 100, available: true, isCombo: false, tags: '' });
     setComboOptions([]);
     setIsEditing(true);
   };
@@ -323,6 +323,56 @@ export default function ProductsTab() {
                     <label htmlFor="isCombo" className="text-sm font-bold text-primary-700">Is Mix & Match Combo?</label>
                   </div>
                 </div>
+
+                {/* 7-Badge Selector Grid */}
+                {(() => {
+                  const supportedTags = [
+                    { id: 'recommended', label: 'Best Seller ⭐', color: 'text-amber-700 bg-amber-50 border-amber-300' },
+                    { id: 'spicy', label: 'Spicy 🌶️', color: 'text-red-700 bg-red-50 border-red-300' },
+                    { id: 'halal', label: 'Halal Certified 🕌', color: 'text-emerald-700 bg-emerald-50 border-emerald-300' },
+                    { id: 'sugar_free', label: 'Sugar-Free 🍬', color: 'text-cyan-700 bg-cyan-50 border-cyan-300' },
+                    { id: 'gluten_free', label: 'Gluten-Free 🌾', color: 'text-yellow-800 bg-yellow-50 border-yellow-300' },
+                    { id: 'nuts', label: 'Contains Nuts 🥜', color: 'text-amber-900 bg-amber-50 border-amber-300' },
+                    { id: 'vegan', label: 'Vegan 🌿', color: 'text-lime-700 bg-lime-50 border-lime-300' }
+                  ];
+                  const activeTags = currentProduct?.tags ? currentProduct.tags.split(',') : [];
+                  const handleToggleTag = (tagId) => {
+                    let newTags;
+                    if (activeTags.includes(tagId)) {
+                      newTags = activeTags.filter(t => t !== tagId);
+                    } else {
+                      newTags = [...activeTags, tagId];
+                    }
+                    setCurrentProduct({ ...currentProduct, tags: newTags.filter(Boolean).join(',') });
+                  };
+                  return (
+                    <div className="p-5 bg-surface-50 rounded-2xl border border-surface-200 mt-4">
+                      <label className="block text-[10px] font-black text-surface-400 uppercase tracking-widest mb-3 ml-1">Dietary & Allergen Badges</label>
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                        {supportedTags.map(tag => {
+                          const isChecked = activeTags.includes(tag.id);
+                          return (
+                            <button
+                              key={tag.id}
+                              type="button"
+                              onClick={() => handleToggleTag(tag.id)}
+                              className={`flex items-center justify-start gap-2 p-3 rounded-xl border-2 font-bold text-xs transition-all active:scale-95 ${
+                                isChecked 
+                                  ? `${tag.color} scale-[1.02] shadow-sm` 
+                                  : 'bg-white border-surface-200 text-surface-500 hover:border-surface-300'
+                              }`}
+                            >
+                              <span className={`w-4 h-4 rounded flex items-center justify-center border text-[9px] ${isChecked ? 'bg-current text-white border-transparent' : 'border-surface-300 bg-white'}`}>
+                                {isChecked && '✓'}
+                              </span>
+                              <span>{tag.label}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  );
+                })()}
 
                 {currentProduct.isCombo && (
                   <div className="p-6 bg-primary-50/30 rounded-3xl border border-primary-100 animate-fade-in space-y-6">
