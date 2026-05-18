@@ -5,6 +5,7 @@ import { useSocket } from '../context/SocketContext';
 import { useAuth } from '../context/AuthContext';
 import { formatCurrency, formatDate, getElapsedMinutes, playNotificationSound, unlockAudio, updateAppBadge, requestNotificationPermission, showSystemNotification } from '../utils/helpers';
 import { useDynamicBranding } from '../hooks/useDynamicBranding';
+import { applyTheme, clearTheme } from '../utils/theme';
 
 export default function CashierDashboard() {
   const [orders, setOrders] = useState([]);
@@ -26,6 +27,11 @@ export default function CashierDashboard() {
 
   // Dynamic favicon & title
   useDynamicBranding(`${user?.tenantName || 'Cashier'} Dashboard`, user?.tenantFavicon);
+
+  useEffect(() => {
+    if (user?.tenantColor) applyTheme(user.tenantColor);
+    return () => clearTheme();
+  }, [user?.tenantColor]);
 
   useEffect(() => {
     loadOrders();
