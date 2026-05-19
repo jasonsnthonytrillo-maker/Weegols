@@ -188,7 +188,7 @@ export default function Menu() {
     setSelectedProduct(product);
   };
 
-  const brandingColor = '#000000';
+  const brandingColor = branding?.primaryColor || '#16a34a';
   const itemCount = getItemCount();
 
   const { joinRoom, leaveRoom, connected } = useSocket();
@@ -372,7 +372,7 @@ export default function Menu() {
             <div className="flex-shrink-0 mb-6">
               <div className="flex items-center gap-3 mb-2 md:mb-3">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-white/50 backdrop-blur-sm rounded-2xl overflow-hidden flex items-center justify-center shadow-lg border-2 border-white flex-shrink-0 p-0.5">
-                  <img src="/logo.png" className="w-full h-full object-contain -translate-x-1" alt="Weegol's" />
+                  <img src="/logo.png" className="w-full h-full object-contain" alt="Weegol's" />
                 </div>
                 <h1 className="font-heading text-xl md:text-2xl lg:text-3xl font-bold text-surface-900 uppercase leading-tight" style={{ color: brandingColor }}>{tenantName?.split(' ')[0]}</h1>
               </div>

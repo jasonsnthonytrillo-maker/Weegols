@@ -213,7 +213,7 @@ export default function Landing() {
 
         <div className="flex justify-center mb-10">
           <div className="w-48 h-48 md:w-56 md:h-56 flex items-center justify-center animate-scale-in drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
-            <img src="/logo.png" className="w-[120%] h-[120%] object-contain -translate-x-3 -translate-y-2 hover:scale-105 transition-transform duration-500" alt="Weegol's" />
+            <img src="/logo.png" className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" alt="Weegol's" />
           </div>
         </div>
 

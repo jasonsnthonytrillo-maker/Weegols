@@ -66,7 +66,7 @@ export default function OrderConfirmation() {
     return () => clearTheme();
   }, [tenantSlug]);
 
-  const brandingColor = branding?.primaryColor || '#0a3d01';
+  const brandingColor = branding?.primaryColor || '#16a34a';
   const homeLink = '/';
   const menuLink = '/menu';
   const queueLink = '/queue';
