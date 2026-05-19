@@ -36,9 +36,17 @@ router.post('/upload-image', authenticate, authorize('admin'), async (req, res) 
 
     if (error) {
       console.error('Supabase Upload Error:', error);
+      let availableBuckets = [];
+      try {
+        const { data: buckets } = await supabase.storage.listBuckets();
+        if (buckets) availableBuckets = buckets.map(b => b.name);
+      } catch (e) {
+        console.error('Failed to list buckets:', e);
+      }
+
       return res.status(500).json({ 
         success: false, 
-        message: `Storage upload failed: ${error.message || 'Ensure pos-media bucket exists and is public.'}`,
+        message: `Storage upload failed: ${error.message || 'No bucket'}. Existing buckets: [${availableBuckets.join(', ') || 'none'}]. Please name your bucket "pos-media" or rename it.`,
         error: error
       });
     }
