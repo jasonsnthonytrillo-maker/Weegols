@@ -250,26 +250,26 @@ export default function GlobalNotification() {
     <>
       {/* READY ALERT */}
       {readyOrderNumbers.length > 0 && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-emerald-900/90 backdrop-blur-md p-6" onClick={dismissReadyAlert}>
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-950/95 backdrop-blur-2xl p-6" onClick={dismissReadyAlert}>
           <div className="text-center animate-fade-in-up w-full max-w-2xl" onClick={e => e.stopPropagation()}>
-            <div className="text-7xl sm:text-8xl mb-4 animate-bounce">🔔</div>
-            <h1 className="font-heading text-4xl sm:text-6xl font-black text-white mb-2 leading-tight">
+            <div className="text-7xl sm:text-8xl mb-6 animate-bounce">🔔</div>
+            <h1 className="font-heading text-4xl sm:text-6xl font-black text-white mb-3 tracking-tight leading-tight">
               {readyOrderNumbers.length > 1 ? 'Your Orders are Ready!' : 'Your Order is Ready!'}
             </h1>
-            <p className="text-emerald-200 text-lg sm:text-xl font-medium mb-4">Queue Number{readyOrderNumbers.length > 1 ? 's' : ''}</p>
+            <p className="text-slate-400 text-lg sm:text-xl font-medium mb-6">Queue Number{readyOrderNumbers.length > 1 ? 's' : ''}</p>
             
             <div className="flex flex-wrap justify-center gap-4 mb-10">
               {readyOrderNumbers.map(num => (
-                <div key={num} className="bg-white/10 backdrop-blur-md border-2 border-white/20 px-6 py-4 rounded-3xl">
-                  <p className="font-heading text-4xl sm:text-6xl font-black text-white tracking-tight">
+                <div key={num} className="bg-emerald-500/10 border-2 border-emerald-500/30 px-8 py-5 rounded-[2rem] shadow-lg shadow-emerald-500/5">
+                  <p className="font-heading text-5xl sm:text-7xl font-black text-emerald-400 tracking-tight">
                     {num?.includes('-') ? num.split('-')[1] : num}
                   </p>
                 </div>
               ))}
             </div>
 
-            <p className="text-emerald-300 text-base sm:text-lg mb-10">Please proceed to the counter to pick up your order{readyOrderNumbers.length > 1 ? 's' : ''}.</p>
-            <button onClick={dismissReadyAlert} className="bg-white text-emerald-800 font-bold text-lg sm:text-xl px-12 py-5 rounded-2xl shadow-2xl hover:bg-emerald-50 transition-all active:scale-95">
+            <p className="text-slate-300 text-base sm:text-lg mb-10 max-w-md mx-auto">Please proceed to the counter to pick up your order{readyOrderNumbers.length > 1 ? 's' : ''}.</p>
+            <button onClick={dismissReadyAlert} className="bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-lg sm:text-xl px-12 py-5 rounded-2xl shadow-xl shadow-emerald-500/20 transition-all active:scale-95 border border-emerald-400/20">
               Got it! ✓
             </button>
           </div>
