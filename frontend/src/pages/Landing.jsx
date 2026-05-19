@@ -142,10 +142,11 @@ export default function Landing() {
                 transition: all 0.3s ease;
               }
               .btn-custom:hover {
-                background-color: #16a34a;
+                background-color: #b91c1c;
                 color: #ffffff;
-                border-color: #16a34a;
-                box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.4);
+                border-color: #b91c1c;
+                box-shadow: 0 10px 25px -3px rgba(220, 38, 38, 0.6);
+                transform: translateY(-2px) scale(1.02);
               }
             `}
         </style>
@@ -212,8 +213,8 @@ export default function Landing() {
         )}
 
         <div className="flex justify-center mb-10">
-          <div className="w-48 h-48 md:w-56 md:h-56 flex items-center justify-center animate-scale-in drop-shadow-[0_10px_15px_rgba(0,0,0,0.8)]">
-            <img src="/logo.png" className="w-full h-full object-contain hover:scale-105 transition-transform duration-500" alt="Weegol's" />
+          <div className="w-48 h-48 md:w-56 md:h-56 bg-white rounded-[40px] md:rounded-[50px] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-4 border-white/10 animate-scale-in ring-8 ring-white/5">
+            <img src="/logo.png" className="w-full h-full object-contain hover:scale-110 transition-transform duration-700" alt="Weegol's" />
           </div>
         </div>
 
