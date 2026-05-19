@@ -22,6 +22,8 @@ export default function CashierDashboard() {
   const [qrStatus, setQrStatus] = useState(null);
   const [showKeypad, setShowKeypad] = useState(false);
   const [showRefKeypad, setShowRefKeypad] = useState(false);
+  const [showPrepModal, setShowPrepModal] = useState(false);
+  const [prepModalOrder, setPrepModalOrder] = useState(null);
   const { joinRoom, onEvent, connected } = useSocket();
   const { logoutUser, user } = useAuth();
 
@@ -186,11 +188,19 @@ export default function CashierDashboard() {
     }
   };
 
-  const handleStartPreparing = async () => {
+  const handleStartPreparing = () => {
     if (!selectedOrder) return;
+    setPrepModalOrder(selectedOrder.id);
+    setShowPrepModal(true);
+  };
+
+  const handleConfirmPrep = async (mins) => {
+    if (!prepModalOrder) return;
     setProcessing(true);
+    setShowPrepModal(false);
     try {
-      await startPreparing(selectedOrder.id, 15);
+      await startPreparing(prepModalOrder, mins);
+      setPrepModalOrder(null);
       setSelectedOrder(null);
       loadOrders();
     } catch (e) {
@@ -256,6 +266,68 @@ export default function CashierDashboard() {
 
   return (
     <div className="h-screen flex flex-col bg-surface-100 overflow-hidden relative">
+
+      {/* Prep Time Modal */}
+      {showPrepModal && (
+        <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 sm:p-6 bg-surface-900/60 backdrop-blur-sm animate-fade-in">
+          <div className="bg-white w-full max-w-md rounded-3xl shadow-2xl overflow-hidden animate-scale-in">
+            <div className="bg-orange-50 p-6 border-b border-orange-100 flex items-center gap-4">
+              <div className="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-2xl">🍳</div>
+              <div>
+                <h3 className="font-heading font-bold text-xl text-orange-900">Estimate Prep Time</h3>
+                <p className="text-orange-600 text-sm">How long will this order take?</p>
+              </div>
+            </div>
+            
+            <div className="p-6 space-y-6">
+              <div className="grid grid-cols-3 gap-3">
+                {[5, 10, 15, 20, 30, 60].map(mins => (
+                  <button
+                    key={mins}
+                    onClick={() => handleConfirmPrep(mins)}
+                    className="py-4 bg-surface-50 hover:bg-orange-50 border border-surface-200 hover:border-orange-300 rounded-2xl font-black text-xl transition-all active:scale-95 flex flex-col items-center justify-center group"
+                  >
+                    <span className="text-surface-900 group-hover:text-orange-600 transition-colors">{mins}</span>
+                    <span className="text-[9px] uppercase tracking-widest text-surface-400 mt-0.5">Mins</span>
+                  </button>
+                ))}
+              </div>
+
+              <div className="flex flex-col gap-3">
+                <div className="relative">
+                  <input
+                    type="number"
+                    id="custom-prep-cashier"
+                    placeholder="Or enter custom minutes..."
+                    className="w-full bg-surface-50 border border-surface-200 rounded-xl py-3 px-4 text-sm font-bold focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 outline-none transition-all placeholder:text-surface-400"
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        const val = parseInt(e.target.value);
+                        if (val > 0) handleConfirmPrep(val);
+                      }
+                    }}
+                  />
+                </div>
+                <button
+                  onClick={() => {
+                    const val = parseInt(document.getElementById('custom-prep-cashier')?.value);
+                    if (val > 0) handleConfirmPrep(val);
+                  }}
+                  className="w-full py-3.5 bg-orange-600 text-white font-bold rounded-2xl shadow-lg shadow-orange-600/20 hover:bg-orange-700 transition-all flex items-center justify-center gap-2 active:scale-95"
+                >
+                  Start Preparing 🍳
+                </button>
+                <button
+                  onClick={() => setShowPrepModal(false)}
+                  className="w-full py-2.5 text-surface-500 font-bold hover:text-surface-700 transition-colors text-sm"
+                >
+                  Go Back
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Cancellation Reason Modal */}
       {showCancelModal && (
