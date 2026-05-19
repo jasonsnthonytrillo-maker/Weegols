@@ -106,7 +106,6 @@ export default function CashierDashboard() {
     } else {
       // When switching back to Cash, clear it so cashier can type actual cash received
       setPaymentData(p => ({ ...p, received: '' }));
-      setCalcResult(null);
     }
   }, [paymentData.method, selectedOrder?.id]);
 
