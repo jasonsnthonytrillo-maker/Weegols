@@ -29,6 +29,8 @@ async function main() {
     data: {
       name: 'Kainlowkal',
       slug: 'kainlowkal',
+      logo: '/logo.png',
+      favicon: '/favicon.png',
       primaryColor: '#10b981', // Emerald green (matches healthy & fresh theme)
       secondaryColor: '#34d399' // Mint green
     }
