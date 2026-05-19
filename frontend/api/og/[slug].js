@@ -1,8 +1,8 @@
 export default function handler(req, res) {
   const title = 'KAINLOWKAL POS';
   const description = 'comfort food, made local';
-  const image = 'https://kainlowkal.vercel.app/logo.png';
-  const siteUrl = 'https://kainlowkal.vercel.app/';
+  const image = 'https://weegols.vercel.app/logo.png';
+  const siteUrl = 'https://weegols.vercel.app/';
 
   // Return HTML with OG tags + instant redirect for regular users
   res.setHeader('Content-Type', 'text/html; charset=utf-8');

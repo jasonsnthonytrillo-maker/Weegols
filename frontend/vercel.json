@@ -4,9 +4,9 @@
   ],
   "routes": [
     { "src": "/api/share", "dest": "/api/share" },
-    { "src": "/api/public/(.*)", "dest": "https://pos-y6ib.onrender.com/api/public/$1" },
-    { "src": "/api/(.*)", "dest": "https://pos-y6ib.onrender.com/api/$1" },
-    { "src": "/uploads/(.*)", "dest": "https://pos-y6ib.onrender.com/uploads/$1" },
+    { "src": "/api/public/(.*)", "dest": "https://weegols.onrender.com/api/public/$1" },
+    { "src": "/api/(.*)", "dest": "https://weegols.onrender.com/api/$1" },
+    { "src": "/uploads/(.*)", "dest": "https://weegols.onrender.com/uploads/$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
