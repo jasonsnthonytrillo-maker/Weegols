@@ -299,9 +299,13 @@ export default function MemberPortal() {
                   </p>
                 ) : (
                   <p className="text-slate-500 text-sm">
-                    {mode === 'login'
-                      ? `Sign in to ${tenantData?.name || 'the shop'} to earn points.`
-                      : (mode === 'verify' ? `Enter the code sent to ${formData.email}` : `Create a ${tenantData?.name || ''} account to start earning rewards.`)}
+                    {mode === 'login' ? (
+                      <>Sign in to <span className="inline-flex gap-0 font-heading"><span className="italic font-normal">Kain</span><span className="font-black">lowkal</span></span> to earn points.</>
+                    ) : (mode === 'verify' ? (
+                      `Enter the code sent to ${formData.email}`
+                    ) : (
+                      <>Create a <span className="inline-flex gap-0 font-heading"><span className="italic font-normal">Kain</span><span className="font-black">lowkal</span></span> account to start earning rewards.</>
+                    ))}
                   </p>
                 )}
               </div>
