@@ -24,14 +24,16 @@ export function SocketProvider({ children }) {
     let url = import.meta.env.VITE_WS_URL;
     if (!url) {
       const apiVal = import.meta.env.VITE_API_URL;
-      if (apiVal) {
-        url = apiVal.startsWith('http') ? apiVal.replace('/api', '') : window.location.origin;
+      if (apiVal && apiVal.startsWith('http')) {
+        url = apiVal.replace('/api', '');
+      } else if (window.location.origin.includes('vercel.app')) {
+        url = 'https://weegols.onrender.com';
       } else {
         url = import.meta.env.PROD ? window.location.origin : 'http://localhost:5000';
       }
     }
     
-    console.log('🔌 Initializing Secure WebSocket connection...');
+    console.log(`🔌 Initializing Secure WebSocket connection to: ${url}`);
     
     if (socketRef.current) {
       socketRef.current.disconnect();
