@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const { authenticate } = require('../middleware/auth');
 const prisma = require('../lib/prisma');
 const { OAuth2Client } = require('google-auth-library');
-const GOOGLE_CLIENT_ID = '542194625185-rd9qq05qqgej9n6qkhlgcdgfagid601l.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '34858099230-uvb83hlp4q6rdje145o0tkqlqgjdsuno.apps.googleusercontent.com';
 const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
 const { sendOTPEmail } = require('../lib/mailer');
 

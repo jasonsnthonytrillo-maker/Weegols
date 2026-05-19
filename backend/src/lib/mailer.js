@@ -21,7 +21,7 @@ const sendOTPEmail = async (email, otp, tenant = {}) => {
     const response = await axios.post('https://api.brevo.com/v3/smtp/email', {
       sender: { 
         name: name, 
-        email: process.env.EMAIL_USER || 'jasonanthonytrillo@gmail.com'
+        email: process.env.EMAIL_USER || 'lightworkspords@gmail.com'
       },
       to: [{ email: email }],
       subject: `[${otp}] Your Verification Code for ${name}`,
