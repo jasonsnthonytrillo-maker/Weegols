@@ -134,12 +134,16 @@ export default function Landing() {
                 transition: opacity 2s ease-in-out;
               }
               .btn-custom {
-                background-color: var(--primary-custom);
-                color: white;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+                background-color: #000000;
+                color: #ffffff;
+                border: 2px solid #ffffff;
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
               }
               .btn-custom:hover {
-                filter: brightness(1.1);
+                background-color: #ffffff;
+                color: #000000;
+                border-color: #ffffff;
               }
             `}
         </style>
@@ -211,23 +215,12 @@ export default function Landing() {
           </div>
         </div>
 
-        <h1 className="font-heading text-6xl md:text-9xl font-black text-white leading-[0.85] mb-8 uppercase tracking-tighter">
-          {tenant ? (
-            <>
-              {tenant.name.split(' ')[0]} <br />
-              <span style={{ color: primaryColor }} className="drop-shadow-[0_0_30px_rgba(var(--primary-custom),0.3)]">
-                {tenant.name.split(' ').slice(1).join(' ')}
-              </span>
-            </>
-          ) : (
-            <>
-              KAIN
-              <br />
-              <span style={{ color: '#ffffff' }}>
-                LOWKAL
-              </span>
-            </>
-          )}
+        <h1 className="font-heading text-6xl md:text-9xl text-white leading-[0.85] mb-8 uppercase tracking-tighter">
+          <span className="italic font-normal text-surface-200">KAIN</span>
+          <br />
+          <span className="not-italic font-black text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+            LOWKAL
+          </span>
         </h1>
 
         <p className="text-lg md:text-2xl text-surface-300 max-w-2xl mx-auto font-medium leading-relaxed mb-12">

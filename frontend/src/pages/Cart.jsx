@@ -136,7 +136,7 @@ export default function Cart() {
     setRecommendations(suggested.slice(0, 4));
   }, [items, allProducts]);
 
-  const brandingColor = branding?.primaryColor || '#0a3d01';
+  const brandingColor = '#000000';
   const menuLink = '/menu';
   const checkoutLink = '/checkout';
 
@@ -162,7 +162,7 @@ export default function Cart() {
         {isCustomer && (
           <div className="bg-white border border-surface-200 px-4 py-2 rounded-2xl shadow-sm">
             <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest leading-none mb-1">{t('pointsBalance')}</p>
-            <p className="text-sm font-black text-emerald-600 leading-none">💎 {Math.floor(user.points)} <span className="text-[10px]">PTS</span></p>
+            <p className="text-sm font-black text-slate-800 leading-none">💎 {Math.floor(user.points)} <span className="text-[10px]">PTS</span></p>
           </div>
         )}
       </div>
@@ -180,7 +180,7 @@ export default function Cart() {
             const lineTotal = item.isRedemption ? 0 : itemPrice * item.quantity;
 
             return (
-              <div key={item.cartKey} className={`glass-card p-4 md:p-6 animate-fade-in-up border-2 transition-all ${item.isRedemption ? 'border-emerald-500/50 bg-emerald-50/10' : 'border-transparent'}`} style={{ animationDelay: `${idx * 0.05}s` }}>
+              <div key={item.cartKey} className={`glass-card p-4 md:p-6 animate-fade-in-up border-2 transition-all ${item.isRedemption ? 'border-primary-500 bg-primary-50' : 'border-transparent'}`} style={{ animationDelay: `${idx * 0.05}s` }}>
                 <div className="flex gap-3 md:gap-5">
                   <div className="w-16 h-16 md:w-24 md:h-24 bg-surface-100 rounded-xl md:rounded-2xl flex items-center justify-center text-3xl md:text-5xl flex-shrink-0 relative overflow-hidden">
                     <img src={item.image || 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?q=80&w=200&auto=format&fit=crop'} className="w-full h-full object-cover" />
@@ -196,7 +196,7 @@ export default function Cart() {
                       </div>
                       
                       {item.isRedemption ? (
-                        <div className="mt-2 flex items-center gap-2 text-emerald-600 font-bold text-xs uppercase tracking-widest bg-emerald-50 px-3 py-1 rounded-full self-start inline-flex">
+                        <div className="mt-2 flex items-center gap-2 text-slate-800 font-bold text-xs uppercase tracking-widest bg-slate-100 px-3 py-1 rounded-full self-start inline-flex">
                           💎 Redeemed for {item.pointsCost * item.quantity} Pts
                         </div>
                       ) : (
@@ -220,7 +220,7 @@ export default function Cart() {
                           style={{ backgroundColor: brandingColor }}
                         >+</button>
                       </div>
-                      <span className={`font-heading font-black text-xl md:text-3xl self-end sm:self-auto ${item.isRedemption ? 'text-emerald-500' : ''}`} style={!item.isRedemption ? { color: brandingColor } : {}}>
+                      <span className={`font-heading font-black text-xl md:text-3xl self-end sm:self-auto ${item.isRedemption ? 'text-slate-600' : ''}`} style={!item.isRedemption ? { color: brandingColor } : {}}>
                         {item.isRedemption ? 'FREE' : formatCurrency(lineTotal)}
                       </span>
                     </div>
