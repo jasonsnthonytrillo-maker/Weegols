@@ -28,8 +28,8 @@ export function AuthProvider({ children }) {
             
             // Enforce Tenant Boundaries
             const urlParams = new URLSearchParams(window.location.search);
-            const currentTenantSlug = urlParams.get('tenant') || 'project-million';
-            const userTenantSlug = userData.tenantSlug || userData.tenant?.slug || 'project-million';
+            const currentTenantSlug = urlParams.get('tenant') || 'kainlowkal';
+            const userTenantSlug = userData.tenantSlug || userData.tenant?.slug || 'kainlowkal';
             
             // Allow admins to roam? Actually, let's keep it strict for now.
             if (currentTenantSlug !== userTenantSlug && userData.role === 'customer') {

@@ -17,7 +17,7 @@ api.interceptors.request.use(config => {
   const urlParams = new URLSearchParams(window.location.search);
   const tenantQuery = urlParams.get('tenant');
   
-  let tenantSlug = 'project-million'; // Default
+  let tenantSlug = 'kainlowkal'; // Default
   const isPlatformDomain = hostname.includes('vercel.app') || hostname.includes('onrender.com');
 
   if (tenantQuery) {

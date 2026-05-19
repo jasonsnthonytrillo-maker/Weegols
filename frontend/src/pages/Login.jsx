@@ -26,7 +26,7 @@ export default function Login() {
   const [forgotError, setForgotError] = useState('');
   const [forgotSuccess, setForgotSuccess] = useState('');
 
-  const tenantSlug = searchParams.get('tenant') || 'project-million';
+  const tenantSlug = searchParams.get('tenant') || 'kainlowkal';
   const [branding, setBranding] = useState(null);
   const brandingColor = '#000000';
 
