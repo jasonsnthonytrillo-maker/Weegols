@@ -2,9 +2,9 @@ const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 async function main() {
-  const tenantId = 5; // Hometown Brew
+  const tenantId = 5; // Kainlowkal
 
-  console.log('🌱 Seeding Hometown Brew (ID: 5)...');
+  console.log('🌱 Seeding Kainlowkal (ID: 5)...');
 
   // 1. Create Categories
   const categories = [
@@ -72,7 +72,7 @@ async function main() {
     }
   }
 
-  console.log('✨ Hometown Brew Seeding Finished!');
+  console.log('✨ Kainlowkal Seeding Finished!');
 }
 
 main()

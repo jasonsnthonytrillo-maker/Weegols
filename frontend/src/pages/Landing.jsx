@@ -25,12 +25,12 @@ export default function Landing() {
     return `${backendUrl}${path}`;
   };
 
-  const absoluteFavicon = getAbsoluteUrl(tenant?.favicon);
-  const absoluteOgImage = getAbsoluteUrl(tenant?.ogImage || tenant?.logo);
+  const absoluteFavicon = getAbsoluteUrl(tenant?.favicon) || '/favicon.png';
+  const absoluteOgImage = getAbsoluteUrl(tenant?.ogImage || tenant?.logo) || '/logo.png';
 
-  useDynamicBranding(tenant?.name || 'Hometown Brew', absoluteFavicon, {
+  useDynamicBranding(tenant?.name || 'Kainlowkal', absoluteFavicon, {
     image: absoluteOgImage,
-    description: `Order from ${tenant?.name || 'Hometown Brew'} — Self-Service Kiosk`
+    description: `Order from ${tenant?.name || 'Kainlowkal'} — Self-Service Kiosk`
   });
 
   useEffect(() => {
@@ -76,7 +76,7 @@ export default function Landing() {
     init();
   }, [searchParams]);
 
-  const tenantName = tenant ? tenant.name : 'Hometown Brew';
+  const tenantName = tenant ? tenant.name : 'Kainlowkal';
   const menuLink = '/menu';
   const queueLink = '/queue';
   const portalLink = '/member-portal';
@@ -234,8 +234,8 @@ export default function Landing() {
               <img src={tenant.logo} className="w-full h-full object-cover" alt={tenant.name} />
             </div>
           ) : (
-            <div className="w-24 h-24 md:w-32 md:h-32 bg-white/10 backdrop-blur-md rounded-[40px] flex items-center justify-center text-5xl shadow-2xl border border-white/20 animate-scale-in ring-8 ring-white/5">
-              {tenant?.slug === 'burger-palace' ? '🍔' : '☕'}
+            <div className="w-24 h-24 md:w-32 md:h-32 bg-white/10 backdrop-blur-md rounded-[40px] overflow-hidden flex items-center justify-center shadow-2xl border border-white/20 animate-scale-in ring-8 ring-white/5">
+              {tenant?.slug === 'burger-palace' ? '🍔' : <img src="/logo.png" className="w-full h-full object-cover" alt="" />}
             </div>
           )}
         </div>
@@ -250,10 +250,10 @@ export default function Landing() {
             </>
           ) : (
             <>
-              HOMETOWN
+              KAIN
               <br />
-              <span style={{ color: '#0a3d01' }}>
-                BREW
+              <span style={{ color: '#10b981' }}>
+                LOWKAL
               </span>
             </>
           )}
@@ -262,7 +262,7 @@ export default function Landing() {
         <p className="text-lg md:text-2xl text-surface-300 max-w-2xl mx-auto font-medium leading-relaxed mb-12">
           {tenant?.landing_description || (tenant?.slug === 'burger-palace'
             ? 'The most royal burgers in the palace. Order now and skip the wait!'
-            : 'Fresh food, fast service. Order right from this screen and enjoy your meal.')}
+            : 'comfort food, made local')}
         </p>
 
         {/* Action Buttons */}

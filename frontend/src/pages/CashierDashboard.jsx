@@ -765,7 +765,7 @@ export default function CashierDashboard() {
               {/* Printable Receipt */}
               <div className="print-only receipt-container">
                 <div className="receipt-header">
-                  <span className="receipt-logo">{user?.tenantName || 'Hometown Brew'}</span>
+                  <span className="receipt-logo">{user?.tenantName || 'Kainlowkal'}</span>
                   <span className="receipt-subtitle">Official Receipt</span>
                 </div>
 

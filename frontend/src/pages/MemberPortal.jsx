@@ -290,8 +290,8 @@ export default function MemberPortal() {
                 {tenantData?.logo ? (
                   <img src={tenantData.logo} className="w-20 h-20 rounded-3xl object-cover mx-auto mb-6 shadow-xl shadow-primary-500/20 border-2 border-white/10" alt={tenantData.name} />
                 ) : (
-                  <div className="w-16 h-16 bg-primary-500 rounded-3xl flex items-center justify-center text-3xl mx-auto mb-6 shadow-xl shadow-primary-500/20">
-                    💎
+                  <div className="w-20 h-20 rounded-3xl overflow-hidden flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary-500/20 border-2 border-white/10">
+                    <img src="/logo.png" className="w-full h-full object-cover" alt="" />
                   </div>
                 )}
                 <h1 className="text-3xl font-black text-[#2D241E] mb-2 tracking-tight">

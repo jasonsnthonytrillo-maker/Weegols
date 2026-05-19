@@ -9,10 +9,10 @@ async function main() {
   console.log('📦 Step 1: Creating Tenant...');
   const tenant = await prisma.tenant.create({
     data: {
-      name: 'Hometown Brew',
-      slug: 'hometownbrew',
-      primaryColor: '#f97316',
-      secondaryColor: '#fbbf24'
+      name: 'Kainlowkal',
+      slug: 'kainlowkal',
+      primaryColor: '#000000',
+      secondaryColor: '#ffffff'
     }
   });
   console.log(`✅ Tenant Created: "${tenant.name}" (ID: ${tenant.id})\n`);
@@ -33,12 +33,12 @@ async function main() {
   console.log(`✅ SuperAdmin Created: ${superadmin.email}\n`);
 
   // ===== 3. CREATE ADMIN USER FOR TENANT =====
-  console.log('🔑 Step 3: Creating Admin for Hometown Brew...');
+  console.log('🔑 Step 3: Creating Admin for Kainlowkal...');
   const adminPass = await bcrypt.hash('admin123', 12);
   const admin = await prisma.user.create({
     data: {
       tenantId: tenant.id,
-      email: 'admin@hometownbrew.com',
+      email: 'admin@kainlowkal.com',
       password: adminPass,
       name: 'Store Manager',
       role: 'admin',
@@ -117,7 +117,7 @@ async function main() {
   const settings = [
     { key: 'points_rate', value: '500' },
     { key: 'store_hours', value: '8AM - 10PM' },
-    { key: 'order_prefix', value: 'HB' }
+    { key: 'order_prefix', value: 'KL' }
   ];
   for (const s of settings) {
     await prisma.systemSetting.create({
@@ -133,8 +133,8 @@ async function main() {
   console.log(`\n📧 SuperAdmin Login:`);
   console.log(`   Email:    superadmin@elevatepos.com`);
   console.log(`   Password: superadmin123`);
-  console.log(`\n📧 Admin Login (Hometown Brew):`);
-  console.log(`   Email:    admin@hometownbrew.com`);
+  console.log(`\n📧 Admin Login (Kainlowkal):`);
+  console.log(`   Email:    admin@kainlowkal.com`);
   console.log(`   Password: admin123`);
   console.log('═══════════════════════════════════════════');
 }
