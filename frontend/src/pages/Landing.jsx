@@ -82,7 +82,7 @@ export default function Landing() {
   const portalLink = '/member-portal';
   const primaryColor = '#ffffff';
 
-  const bannerImage = 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8dd?q=80&w=2000&auto=format&fit=crop';
+  const bannerImage = 'https://images.unsplash.com/photo-1527477396000-e27163b481c2?q=80&w=2000&auto=format&fit=crop';
   const assets = [bannerImage];
   const [currentAssetIndex] = useState(0);
 
@@ -212,13 +212,13 @@ export default function Landing() {
         )}
 
         <div className="flex justify-center mb-10">
-          <div className="w-24 h-24 md:w-32 md:h-32 bg-white/10 backdrop-blur-md rounded-[40px] overflow-hidden flex items-center justify-center shadow-2xl border border-white/20 animate-scale-in ring-8 ring-white/5">
-            <img src="/logo.png" className="w-full h-full object-cover" alt="Weegol's" />
+          <div className="w-24 h-24 md:w-32 md:h-32 bg-white backdrop-blur-md rounded-[40px] overflow-hidden flex items-center justify-center shadow-2xl border border-white/20 animate-scale-in ring-8 ring-white/5 p-2">
+            <img src="/logo.png" className="w-full h-full object-contain" alt="Weegol's" />
           </div>
         </div>
 
-        <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl leading-none mb-8 tracking-tighter flex items-center justify-center flex-wrap gap-x-0">
-          <span className="italic font-black text-[#dc2626] drop-shadow-[0_4px_4px_rgba(255,255,255,0.2)]">Weegol's</span>
+        <h1 className="text-6xl md:text-8xl lg:text-[10rem] leading-none mb-8 flex items-center justify-center flex-wrap tracking-normal relative z-10 hover:scale-105 transition-transform duration-500 cursor-default">
+          <span className="text-[#e21b22] drop-shadow-[0_0_15px_rgba(255,255,255,0.8)]" style={{ fontFamily: "'Yellowtail', cursive", transform: "rotate(-4deg)", textShadow: "4px 4px 0px white, -2px -2px 0px white, 2px -2px 0px white, -2px 2px 0px white" }}>Weegol's</span>
         </h1>
 
         <p className="text-lg md:text-2xl text-surface-300 max-w-2xl mx-auto font-medium leading-relaxed mb-12">

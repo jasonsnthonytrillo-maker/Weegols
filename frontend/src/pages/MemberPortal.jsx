@@ -300,11 +300,11 @@ export default function MemberPortal() {
                 ) : (
                   <p className="text-slate-500 text-sm">
                     {mode === 'login' ? (
-                      <>Sign in to <span className="inline-flex gap-0 font-heading"><span className="italic font-normal">Kain</span><span className="font-black">lowkal</span></span> to earn points.</>
+                      <>Sign in to <span className="text-[#e21b22] px-1" style={{ fontFamily: "'Yellowtail', cursive" }}>Weegol's</span> to earn points.</>
                     ) : (mode === 'verify' ? (
                       `Enter the code sent to ${formData.email}`
                     ) : (
-                      <>Create a <span className="inline-flex gap-0 font-heading"><span className="italic font-normal">Kain</span><span className="font-black">lowkal</span></span> account to start earning rewards.</>
+                      <>Create a <span className="text-[#e21b22] px-1 text-lg" style={{ fontFamily: "'Yellowtail', cursive" }}>Weegol's</span> account to start earning rewards.</>
                     ))}
                   </p>
                 )}
