@@ -21,7 +21,15 @@ export function SocketProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    const url = import.meta.env.VITE_WS_URL || 'http://localhost:5000';
+    let url = import.meta.env.VITE_WS_URL;
+    if (!url) {
+      const apiVal = import.meta.env.VITE_API_URL;
+      if (apiVal) {
+        url = apiVal.startsWith('http') ? apiVal.replace('/api', '') : window.location.origin;
+      } else {
+        url = import.meta.env.PROD ? window.location.origin : 'http://localhost:5000';
+      }
+    }
     
     console.log('🔌 Initializing Secure WebSocket connection...');
     
