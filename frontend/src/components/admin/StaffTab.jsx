@@ -68,7 +68,8 @@ export default function StaffTab() {
   if (loading) return <div className="p-8 text-center text-surface-500">Loading directory...</div>;
 
   return (
-    <div className="animate-fade-in-up">
+    <>
+      <div className="animate-fade-in-up">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
         <div>
           <h2 className="font-heading text-3xl font-black text-slate-900 tracking-tight">User Management</h2>
@@ -174,6 +175,7 @@ export default function StaffTab() {
           </table>
         </div>
       </div>
+    </div>
 
       {/* Create Modal */}
       {showModal && (
@@ -239,6 +241,6 @@ export default function StaffTab() {
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
