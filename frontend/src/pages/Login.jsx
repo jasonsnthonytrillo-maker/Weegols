@@ -28,7 +28,7 @@ export default function Login() {
 
   const tenantSlug = searchParams.get('tenant') || 'weegols';
   const [branding, setBranding] = useState(null);
-  const brandingColor = branding?.primaryColor || '#16a34a';
+  const brandingColor = branding?.primaryColor || '#e21b22';
 
   useEffect(() => {
     if (tenantSlug) {

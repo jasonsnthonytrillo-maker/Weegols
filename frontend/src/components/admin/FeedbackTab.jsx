@@ -91,7 +91,7 @@ export default function FeedbackTab() {
                       <div className="flex items-center gap-2 mb-1">
                         <h4 className="font-black text-surface-900">{review.customerName}</h4>
                         <span className="text-[10px] font-black px-2 py-0.5 bg-surface-200 rounded-full text-surface-600 uppercase tracking-tighter">
-                          Order #{review.orderNumber.split('-')[1] || review.orderNumber}
+                          Order #{review.orderNumber.includes('-') ? review.orderNumber.split('-')[1] : review.orderNumber}
                         </span>
                       </div>
                       <div className="flex gap-0.5 mb-3">

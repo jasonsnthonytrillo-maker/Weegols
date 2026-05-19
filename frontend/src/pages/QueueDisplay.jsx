@@ -41,7 +41,7 @@ export default function QueueDisplay() {
     }
   }, [tenantSlug]);
 
-  const brandingColor = branding?.primaryColor || '#16a34a';
+  const brandingColor = branding?.primaryColor || '#e21b22';
   const homeLink = '/';
 
   const handleStartBoard = () => {
@@ -114,7 +114,9 @@ export default function QueueDisplay() {
                   <div key={order.id}
                     className="bg-slate-50/50 border border-slate-200/60 rounded-[2rem] p-4 text-center animate-fade-in-up transition-all hover:shadow-md hover:bg-white"
                     style={{ animationDelay: `${idx * 0.05}s` }}>
-                    <p className="queue-number font-black text-4xl sm:text-5xl md:text-6xl" style={{ color: brandingColor }}>{order.orderNumber.split('-')[1]}</p>
+                    <p className="queue-number font-black text-4xl sm:text-5xl md:text-6xl" style={{ color: brandingColor }}>
+                      {order.orderNumber.includes('-') ? order.orderNumber.split('-')[1] : order.orderNumber}
+                    </p>
                     <p className="text-slate-800 text-xs sm:text-sm mt-2 font-black truncate">{order.customerName}</p>
                     <span className="inline-block mt-2 text-[9px] sm:text-[10px] font-bold bg-slate-200/60 text-slate-600 px-3 py-1 rounded-full uppercase tracking-wider">
                       {order.orderType === 'dine_in' ? '🍽️ Dine In' : '🥡 Take Out'}
@@ -146,7 +148,9 @@ export default function QueueDisplay() {
                     className="bg-white border-2 border-emerald-500/80 rounded-[2rem] p-4 text-center animate-fade-in-up shadow-lg shadow-emerald-500/5 hover:scale-[1.03] transition-all relative overflow-hidden"
                     style={{ animationDelay: `${idx * 0.05}s` }}>
                     <div className="absolute top-0 inset-x-0 h-1.5 bg-emerald-500"></div>
-                    <p className="queue-number text-emerald-600 font-black text-4xl sm:text-5xl md:text-6xl animate-pulse">{order.orderNumber.split('-')[1]}</p>
+                    <p className="queue-number text-emerald-600 font-black text-4xl sm:text-5xl md:text-6xl animate-pulse">
+                      {order.orderNumber.includes('-') ? order.orderNumber.split('-')[1] : order.orderNumber}
+                    </p>
                     <p className="text-slate-800 text-xs sm:text-sm mt-2 font-black truncate">{order.customerName}</p>
                   </div>
                 ))}

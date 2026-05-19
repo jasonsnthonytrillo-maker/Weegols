@@ -188,7 +188,7 @@ export default function Menu() {
     setSelectedProduct(product);
   };
 
-  const brandingColor = branding?.primaryColor || '#16a34a';
+  const brandingColor = branding?.primaryColor || '#e21b22';
   const itemCount = getItemCount();
 
   const { joinRoom, leaveRoom, connected } = useSocket();
@@ -428,37 +428,37 @@ export default function Menu() {
                         <div className="absolute top-2 right-2 z-10 flex flex-col gap-1 items-end">
                           {product.tags.split(',').map(tag => {
                             if (tag === 'recommended') return (
-                              <span key={tag} className="bg-amber-500/95 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-amber-400/20">
+                              <span key={tag} className="text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-amber-400/20" style={{ backgroundColor: '#f59e0b' }}>
                                 ⭐ Best Seller
                               </span>
                             );
                             if (tag === 'spicy') return (
-                              <span key={tag} className="bg-red-600/95 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-red-500/20">
+                              <span key={tag} className="text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-red-500/20" style={{ backgroundColor: '#dc2626' }}>
                                 🌶️ Spicy
                               </span>
                             );
                             if (tag === 'halal') return (
-                              <span key={tag} className="bg-emerald-600/95 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-emerald-500/20">
+                              <span key={tag} className="text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-emerald-500/20" style={{ backgroundColor: '#059669' }}>
                                 🕌 Halal
                               </span>
                             );
                             if (tag === 'sugar_free') return (
-                              <span key={tag} className="bg-cyan-600/95 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-cyan-500/20">
+                              <span key={tag} className="text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-cyan-500/20" style={{ backgroundColor: '#0891b2' }}>
                                 🍬 Sugar-Free
                               </span>
                             );
                             if (tag === 'gluten_free') return (
-                              <span key={tag} className="bg-yellow-600/95 text-slate-900 text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-yellow-500/20">
+                              <span key={tag} className="text-slate-900 text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-yellow-500/20" style={{ backgroundColor: '#ca8a04' }}>
                                 🌾 Gluten-Free
                               </span>
                             );
                             if (tag === 'nuts') return (
-                              <span key={tag} className="bg-amber-800/95 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-amber-700/20">
+                              <span key={tag} className="text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-amber-700/20" style={{ backgroundColor: '#92400e' }}>
                                 🥜 Has Nuts
                               </span>
                             );
                             if (tag === 'vegan') return (
-                              <span key={tag} className="bg-lime-600/95 text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-lime-500/20">
+                              <span key={tag} className="text-white text-[8px] font-black px-2 py-0.5 rounded-full shadow-md uppercase tracking-wider flex items-center gap-1 backdrop-blur-sm border border-lime-500/20" style={{ backgroundColor: '#65a30d' }}>
                                 🌿 Vegan
                               </span>
                             );
@@ -727,7 +727,7 @@ export default function Menu() {
           <div className="relative bg-white rounded-[2.5rem] w-full max-w-3xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden animate-scale-in" onClick={e => e.stopPropagation()}>
             
             {/* Header Section */}
-            <div className="relative p-8 md:p-10 text-white overflow-hidden shrink-0" style={{ backgroundColor: brandingColor }}>
+            <div className="relative p-8 md:p-10 text-white overflow-hidden shrink-0 bg-[#e21b22]">
               <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -mr-20 -mt-20"></div>
               
               <div className="relative z-10 flex justify-between items-start">

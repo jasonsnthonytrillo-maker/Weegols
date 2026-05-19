@@ -110,7 +110,7 @@ export default function Checkout() {
   }, [tenantSlug, user?.tenantSlug]);
 
 
-  const brandingColor = branding?.primaryColor || '#16a34a';
+  const brandingColor = branding?.primaryColor || '#e21b22';
   const cartLink = '/cart';
   const menuLink = '/menu';
   const isFullRedemption = items.length > 0 && items.every(item => item.isRedemption);
