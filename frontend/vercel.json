@@ -4,9 +4,9 @@
   ],
   "routes": [
     { "src": "/api/share", "dest": "/api/share" },
-    { "src": "/api/public/(.*)", "dest": "https://marketing-pqi1.onrender.com/api/public/$1" },
-    { "src": "/api/(.*)", "dest": "https://marketing-pqi1.onrender.com/api/$1" },
-    { "src": "/uploads/(.*)", "dest": "https://marketing-pqi1.onrender.com/uploads/$1" },
+    { "src": "/api/public/(.*)", "dest": "https://pos-y6ib.onrender.com/api/public/$1" },
+    { "src": "/api/(.*)", "dest": "https://pos-y6ib.onrender.com/api/$1" },
+    { "src": "/uploads/(.*)", "dest": "https://pos-y6ib.onrender.com/uploads/$1" },
     { "handle": "filesystem" },
     { "src": "/(.*)", "dest": "/index.html" }
   ]
