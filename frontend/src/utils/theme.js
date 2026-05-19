@@ -5,7 +5,6 @@ import { hexToRgb } from './helpers';
  * @param {string} primaryColor - Hex color code (e.g., #f97316)
  */
 export function applyTheme(primaryColor) {
-  // Always enforce the premium professional black-and-white palette
   let styleTag = document.getElementById('dynamic-branding-style');
   if (!styleTag) {
     styleTag = document.createElement('style');
@@ -15,32 +14,31 @@ export function applyTheme(primaryColor) {
 
   styleTag.innerHTML = `
     :root {
-      --primary-50: 248, 250, 252 !important;
-      --primary-100: 241, 245, 249 !important;
-      --primary-200: 226, 232, 240 !important;
-      --primary-300: 203, 213, 225 !important;
-      --primary-400: 148, 163, 184 !important;
-      --primary-50: 248, 250, 252 !important;
-      --primary-500: 0, 0, 0 !important;
-      --primary-600: 15, 23, 42 !important;
-      --primary-700: 30, 41, 59 !important;
-      --primary-800: 15, 23, 42 !important;
-      --primary-900: 2, 6, 23 !important;
+      --primary-50: 240, 253, 244 !important;
+      --primary-100: 220, 252, 231 !important;
+      --primary-200: 187, 247, 208 !important;
+      --primary-300: 134, 239, 172 !important;
+      --primary-400: 74, 222, 128 !important;
+      --primary-500: 22, 163, 74 !important;
+      --primary-600: 21, 128, 61 !important;
+      --primary-700: 22, 101, 52 !important;
+      --primary-800: 20, 83, 45 !important;
+      --primary-900: 20, 83, 45 !important;
     }
   `;
 
   const shades = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
   const values = {
-    50: "248, 250, 252",
-    100: "241, 245, 249",
-    200: "226, 232, 240",
-    300: "203, 213, 225",
-    400: "148, 163, 184",
-    500: "0, 0, 0",
-    600: "15, 23, 42",
-    700: "30, 41, 59",
-    800: "15, 23, 42",
-    900: "2, 6, 23"
+    50: "240, 253, 244",
+    100: "220, 252, 231",
+    200: "187, 247, 208",
+    300: "134, 239, 172",
+    400: "74, 222, 128",
+    500: "22, 163, 74",
+    600: "21, 128, 61",
+    700: "22, 101, 52",
+    800: "20, 83, 45",
+    900: "20, 83, 45"
   };
   shades.forEach(shade => {
     document.documentElement.style.setProperty(`--primary-${shade}`, values[shade]);

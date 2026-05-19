@@ -546,13 +546,29 @@ export default function CashierDashboard() {
                         </div>
                       ) : (
                         <>
-                          <div className="flex gap-3">
-                            <select value={paymentData.method} onChange={e => setPaymentData(p => ({ ...p, method: e.target.value }))} className="input-field py-3 bg-white w-1/2">
-                              <option value="cash">💵 Cash</option>
-                              <option value="gcash">📱 GCash</option>
-                              <option value="maya">💳 Maya</option>
-                            </select>
-                            <select value={paymentData.discountType} onChange={e => setPaymentData(p => ({ ...p, discountType: e.target.value }))} className="input-field py-3 bg-white w-1/2">
+                          <div className="flex flex-col sm:flex-row gap-3">
+                            <div className="flex-1 grid grid-cols-3 gap-2">
+                              {[
+                                { id: 'cash', label: 'Cash', icon: <span className="text-lg">💵</span> },
+                                { id: 'gcash', label: 'GCash', icon: <img src="/gcash-logo.png" className="h-5 object-contain" alt="GCash" /> },
+                                { id: 'maya', label: 'Maya', icon: <img src="/maya-logo.jpg" className="h-5 object-contain" alt="Maya" /> }
+                              ].map(m => (
+                                <button
+                                  key={m.id}
+                                  type="button"
+                                  onClick={() => setPaymentData(p => ({ ...p, method: m.id }))}
+                                  className={`py-2 px-3 rounded-xl border flex flex-col sm:flex-row items-center justify-center gap-1.5 font-bold text-xs transition-all ${
+                                    paymentData.method === m.id
+                                      ? 'bg-slate-900 border-slate-950 text-white shadow-md'
+                                      : 'bg-white border-surface-200 text-surface-700 hover:bg-surface-50'
+                                  }`}
+                                >
+                                  {m.icon}
+                                  <span>{m.label}</span>
+                                </button>
+                              ))}
+                            </div>
+                            <select value={paymentData.discountType} onChange={e => setPaymentData(p => ({ ...p, discountType: e.target.value }))} className="input-field py-3 bg-white w-full sm:w-1/3">
                               <option value="">No Discount</option>
                               <option value="senior">Senior Citizen (20%)</option>
                               <option value="pwd">PWD (20%)</option>
@@ -626,7 +642,7 @@ export default function CashierDashboard() {
                                   onClick={async () => {
                                     try {
                                       setQrStatus('sending');
-                                      await (await import('../services/api')).requestPayment(selectedOrder.id);
+                                      await (await import('../services/api')).requestPayment(selectedOrder.id, { method: paymentData.method });
                                       setQrStatus('sent');
                                       setTimeout(() => setQrStatus(null), 3500);
                                     } catch (e) {

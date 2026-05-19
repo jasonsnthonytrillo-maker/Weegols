@@ -80,9 +80,17 @@ export default function Checkout() {
   ];
 
   const PAYMENT_METHODS = [
-    { id: 'cash', label: t('cash'), icon: '💵' },
-    { id: 'gcash', label: t('gcash'), icon: '📱' },
-    { id: 'maya', label: t('maya'), icon: '💳' }
+    { id: 'cash', label: t('cash'), icon: <span className="text-2xl">💵</span> },
+    { 
+      id: 'gcash', 
+      label: t('gcash'), 
+      icon: <img src="/gcash-logo.png" className="h-7 object-contain inline-block rounded-md" alt="GCash" /> 
+    },
+    { 
+      id: 'maya', 
+      label: t('maya'), 
+      icon: <img src="/maya-logo.jpg" className="h-7 object-contain inline-block rounded-md" alt="Maya" /> 
+    }
   ];
 
   const [customerName, setCustomerName] = useState(user?.name || '');
@@ -238,9 +246,12 @@ export default function Checkout() {
             <div className="grid grid-cols-3 gap-3">
               {PAYMENT_METHODS.map(m => (
                 <button key={m.id} type="button" onClick={() => setPaymentMethod(m.id)}
-                  className={`p-3 rounded-xl border-2 text-center font-medium text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white' : 'border-surface-200 hover:border-primary-300 text-surface-600'}`}
+                  className={`p-3 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 font-bold text-xs sm:text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white shadow-lg shadow-primary-500/10' : 'border-surface-200 hover:border-primary-300 text-surface-600 bg-white'}`}
                   style={paymentMethod === m.id ? { backgroundColor: brandingColor, borderColor: brandingColor, color: '#ffffff' } : {}}>
-                  {m.icon} {m.label}
+                  <div className="h-8 flex items-center justify-center">
+                    {m.icon}
+                  </div>
+                  <span>{m.label}</span>
                 </button>
               ))}
             </div>
