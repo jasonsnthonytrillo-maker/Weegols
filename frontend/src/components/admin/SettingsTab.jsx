@@ -293,7 +293,11 @@ export default function SettingsTab() {
                           const res = await uploadImage({ image: reader.result, name: 'gcash-qr' });
                           setSettings({ ...settings, gcash_qr: res.data.url });
                           setMessage('GCash QR updated! ✅');
-                        } catch (error) { alert('Upload failed'); }
+                        } catch (error) { 
+                          const errMsg = error.response?.data?.message || 'Upload failed';
+                          alert(errMsg);
+                          setMessage('');
+                        }
                       };
                       reader.readAsDataURL(file);
                     }}
@@ -338,7 +342,11 @@ export default function SettingsTab() {
                           const res = await uploadImage({ image: reader.result, name: 'maya-qr' });
                           setSettings({ ...settings, maya_qr: res.data.url });
                           setMessage('Maya QR updated! ✅');
-                        } catch (error) { alert('Upload failed'); }
+                        } catch (error) { 
+                          const errMsg = error.response?.data?.message || 'Upload failed';
+                          alert(errMsg);
+                          setMessage('');
+                        }
                       };
                       reader.readAsDataURL(file);
                     }}
