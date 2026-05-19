@@ -246,12 +246,18 @@ export default function Checkout() {
             <div className="grid grid-cols-3 gap-3">
               {PAYMENT_METHODS.map(m => (
                 <button key={m.id} type="button" onClick={() => setPaymentMethod(m.id)}
-                  className={`p-3 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 font-bold text-xs sm:text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white shadow-lg shadow-primary-500/10' : 'border-surface-200 hover:border-primary-300 text-surface-600 bg-white'}`}
+                  className={`p-3 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 font-bold text-xs sm:text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white shadow-xl' : 'border-surface-200 hover:border-primary-300 text-surface-600 bg-white'}`}
                   style={paymentMethod === m.id ? { backgroundColor: brandingColor, borderColor: brandingColor, color: '#ffffff' } : {}}>
-                  <div className="h-10 sm:h-12 flex items-center justify-center">
-                    {m.icon}
-                  </div>
-                  {m.id === 'cash' && <span>{m.label}</span>}
+                  {m.id === 'cash' ? (
+                    <div className="flex flex-col items-center gap-1">
+                      <div className="h-8 flex items-center justify-center text-2xl">{m.icon}</div>
+                      <span>{m.label}</span>
+                    </div>
+                  ) : (
+                    <div className="bg-white px-4 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-slate-100 w-full max-w-[110px] max-h-8">
+                      {m.icon}
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
