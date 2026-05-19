@@ -82,7 +82,7 @@ export default function Landing() {
   const portalLink = '/member-portal';
   const primaryColor = '#ffffff';
 
-  const bannerImage = 'https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=2000&auto=format&fit=crop';
+  const bannerImage = 'https://images.unsplash.com/photo-1598514982205-f36b96d1e8dd?q=80&w=2000&auto=format&fit=crop';
   const assets = [bannerImage];
   const [currentAssetIndex] = useState(0);
 

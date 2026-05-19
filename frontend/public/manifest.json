@@ -1,7 +1,7 @@
 {
-  "short_name": "Project Million",
-  "name": "Project Million POS",
-  "description": "Professional Multi-Tenant Point of Sale System by Project Million",
+  "short_name": "Weegol's",
+  "name": "Weegol's POS",
+  "description": "Weegol's Chicken Inato POS System",
   "icons": [
     {
       "src": "/favicon.ico",
@@ -9,13 +9,13 @@
       "type": "image/x-icon"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/5787/5787016.png",
+      "src": "/logo.png",
       "type": "image/png",
       "sizes": "192x192",
       "purpose": "any maskable"
     },
     {
-      "src": "https://cdn-icons-png.flaticon.com/512/5787/5787016.png",
+      "src": "/logo.png",
       "type": "image/png",
       "sizes": "512x512",
       "purpose": "any maskable"
@@ -23,6 +23,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#f97316",
-  "background_color": "#ffffff"
+  "theme_color": "#16a34a",
+  "background_color": "#000000"
 }
