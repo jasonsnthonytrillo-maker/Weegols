@@ -84,12 +84,12 @@ export default function Checkout() {
     { 
       id: 'gcash', 
       label: t('gcash'), 
-      icon: <img src="/gcash-logo.png" className="h-7 object-contain inline-block rounded-md" alt="GCash" /> 
+      icon: <img src="/gcash-logo.png" className="h-10 sm:h-12 object-contain inline-block rounded-md" alt="GCash" /> 
     },
     { 
       id: 'maya', 
       label: t('maya'), 
-      icon: <img src="/maya-logo.jpg" className="h-7 object-contain inline-block rounded-md" alt="Maya" /> 
+      icon: <img src="/maya-logo.jpg" className="h-10 sm:h-12 object-contain inline-block rounded-md" alt="Maya" /> 
     }
   ];
 
@@ -248,10 +248,10 @@ export default function Checkout() {
                 <button key={m.id} type="button" onClick={() => setPaymentMethod(m.id)}
                   className={`p-3 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 font-bold text-xs sm:text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white shadow-lg shadow-primary-500/10' : 'border-surface-200 hover:border-primary-300 text-surface-600 bg-white'}`}
                   style={paymentMethod === m.id ? { backgroundColor: brandingColor, borderColor: brandingColor, color: '#ffffff' } : {}}>
-                  <div className="h-8 flex items-center justify-center">
+                  <div className="h-10 sm:h-12 flex items-center justify-center">
                     {m.icon}
                   </div>
-                  <span>{m.label}</span>
+                  {m.id === 'cash' && <span>{m.label}</span>}
                 </button>
               ))}
             </div>

@@ -550,8 +550,8 @@ export default function CashierDashboard() {
                             <div className="flex-1 grid grid-cols-3 gap-2">
                               {[
                                 { id: 'cash', label: 'Cash', icon: <span className="text-lg">💵</span> },
-                                { id: 'gcash', label: 'GCash', icon: <img src="/gcash-logo.png" className="h-5 object-contain" alt="GCash" /> },
-                                { id: 'maya', label: 'Maya', icon: <img src="/maya-logo.jpg" className="h-5 object-contain" alt="Maya" /> }
+                                { id: 'gcash', label: 'GCash', icon: <img src="/gcash-logo.png" className="h-7 sm:h-8 object-contain" alt="GCash" /> },
+                                { id: 'maya', label: 'Maya', icon: <img src="/maya-logo.jpg" className="h-7 sm:h-8 object-contain" alt="Maya" /> }
                               ].map(m => (
                                 <button
                                   key={m.id}
@@ -564,7 +564,7 @@ export default function CashierDashboard() {
                                   }`}
                                 >
                                   {m.icon}
-                                  <span>{m.label}</span>
+                                  {m.id === 'cash' && <span>{m.label}</span>}
                                 </button>
                               ))}
                             </div>
