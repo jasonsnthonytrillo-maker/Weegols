@@ -135,16 +135,17 @@ export default function Landing() {
                 transition: opacity 2s ease-in-out;
               }
               .btn-custom {
-                background-color: #000000;
+                background-color: #dc2626;
                 color: #ffffff;
-                border: 2px solid #ffffff;
-                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+                border: 2px solid #dc2626;
+                box-shadow: 0 10px 15px -3px rgba(220, 38, 38, 0.4);
                 transition: all 0.3s ease;
               }
               .btn-custom:hover {
-                background-color: #ffffff;
-                color: #000000;
-                border-color: #ffffff;
+                background-color: #16a34a;
+                color: #ffffff;
+                border-color: #16a34a;
+                box-shadow: 0 10px 15px -3px rgba(22, 163, 74, 0.4);
               }
             `}
         </style>
@@ -216,8 +217,8 @@ export default function Landing() {
           </div>
         </div>
 
-        <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl text-white leading-none mb-8 tracking-tighter flex items-center justify-center flex-wrap gap-x-0">
-          <span className="italic font-normal text-surface-200">Weegol's</span>
+        <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl leading-none mb-8 tracking-tighter flex items-center justify-center flex-wrap gap-x-0">
+          <span className="italic font-black text-[#dc2626] drop-shadow-[0_4px_4px_rgba(255,255,255,0.2)]">Weegol's</span>
         </h1>
 
         <p className="text-lg md:text-2xl text-surface-300 max-w-2xl mx-auto font-medium leading-relaxed mb-12">
