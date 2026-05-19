@@ -28,7 +28,7 @@ import { PrivacyPolicy, TermsOfService, DataDeletion } from './pages/Legal';
 
 function ProtectedRoute({ children, roles }) {
   const { user, loading } = useAuth();
-  if (loading) return <div className="min-h-screen flex items-center justify-center bg-surface-50"><div className="text-surface-400">Loading...</div></div>;
+  if (loading) return <div className="min-h-screen flex flex-col items-center justify-center bg-surface-50" style={{background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)'}}><img src="/logo.png" alt="Weegol's" style={{width:'120px',height:'120px',objectFit:'contain',borderRadius:'24px',marginBottom:'16px',animation:'pulse 2s infinite'}}/><div className="text-white font-semibold text-lg" style={{fontFamily:'Outfit,sans-serif'}}>Loading...</div></div>;
   if (!user) return <Navigate to="/login" />;
   if (roles && !roles.includes(user.role)) return <Navigate to="/login" />;
   return children;

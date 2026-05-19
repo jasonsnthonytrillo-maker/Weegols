@@ -20,15 +20,15 @@ router.post('/request-otp', async (req, res) => {
   try {
     // Determine tenant
     let tenantId = null;
-    let tenantName = 'Kainlowkal';
-    if (tenantSlug && tenantSlug !== 'kainlowkal') {
+    let tenantName = 'Weegol's';
+    if (tenantSlug && tenantSlug !== 'weegols') {
       const tenantRecord = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (tenantRecord) {
         tenantId = tenantRecord.id;
         tenantName = tenantRecord.name;
       }
     } else {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -68,11 +68,11 @@ router.post('/verify-otp', async (req, res) => {
   try {
     // Find tenant
     let tenantId = null;
-    if (tenantSlug && tenantSlug !== 'kainlowkal') {
+    if (tenantSlug && tenantSlug !== 'weegols') {
       const t = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (t) tenantId = t.id;
     } else {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -129,11 +129,11 @@ router.post('/check-otp', async (req, res) => {
 
   try {
     let tenantId = null;
-    if (tenantSlug && tenantSlug !== 'kainlowkal') {
+    if (tenantSlug && tenantSlug !== 'weegols') {
       const t = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (t) tenantId = t.id;
     } else {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -167,11 +167,11 @@ router.post('/reset-password', async (req, res) => {
   try {
     // Find tenant
     let tenantId = null;
-    if (tenantSlug && tenantSlug !== 'kainlowkal') {
+    if (tenantSlug && tenantSlug !== 'weegols') {
       const t = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (t) tenantId = t.id;
     } else {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -222,12 +222,12 @@ router.post('/login', async (req, res) => {
     const { tenantSlug } = req.body;
     let tenantId = null;
 
-    if (tenantSlug && tenantSlug !== 'kainlowkal') {
+    if (tenantSlug && tenantSlug !== 'weegols') {
       const tenantRecord = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (tenantRecord) tenantId = tenantRecord.id;
     } else {
-      // MASTER TENANT: Find the kainlowkal ID dynamically
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      // MASTER TENANT: Find the weegols ID dynamically
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -258,7 +258,7 @@ router.post('/login', async (req, res) => {
 
     // TENANT SECURITY CHECK: 
     // If a tenantSlug is provided, the user MUST belong to that tenant (Superadmins bypass this).
-    if (user.role !== 'superadmin' && tenantSlug && tenantSlug !== 'kainlowkal') {
+    if (user.role !== 'superadmin' && tenantSlug && tenantSlug !== 'weegols') {
       if (user.tenant?.slug !== tenantSlug) {
         return res.status(403).json({ 
           success: false, 
@@ -347,7 +347,7 @@ router.post('/google', async (req, res) => {
     }
     // Fallback to Master Tenant if slug is missing
     if (!tenantId) {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -439,7 +439,7 @@ router.post('/register-customer', async (req, res) => {
     }
     // Fallback to Master Tenant if slug is missing
     if (!tenantId) {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 
@@ -510,11 +510,11 @@ router.post('/resend-registration-otp', async (req, res) => {
 
   try {
     let tenantId = null;
-    if (tenantSlug && tenantSlug !== 'kainlowkal') {
+    if (tenantSlug && tenantSlug !== 'weegols') {
       const t = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (t) tenantId = t.id;
     } else {
-      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'kainlowkal' } });
+      const masterTenant = await prisma.tenant.findUnique({ where: { slug: 'weegols' } });
       if (masterTenant) tenantId = masterTenant.id;
     }
 

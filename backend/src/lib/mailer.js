@@ -1,11 +1,11 @@
 const axios = require('axios');
 
 const sendOTPEmail = async (email, otp, tenant = {}) => {
-  const { name = 'Kainlowkal', logo, primaryColor = '#10b981' } = tenant;
+  const { name = "Weegol's", logo, primaryColor = '#10b981' } = tenant;
 
   let absoluteLogo = logo;
   if (logo && logo.startsWith('/')) {
-    absoluteLogo = `https://kainlowkal.vercel.app${logo}`;
+    absoluteLogo = `https://weegols.vercel.app${logo}`;
   }
 
   if (!process.env.EMAIL_PASS) {
@@ -59,7 +59,7 @@ const sendOTPEmail = async (email, otp, tenant = {}) => {
               <p style="font-size: 14px; color: #94a3b8;">This code will expire in 10 minutes for your security.</p>
             </div>
             <div class="footer">
-              <p>&copy; ${new Date().getFullYear()} ${name}. Powered by Kainlowkal.</p>
+              <p>&copy; ${new Date().getFullYear()} ${name}. Powered by Weegol's POS.</p>
               <p>If you didn't request this, you can safely ignore this email.</p>
             </div>
           </div>

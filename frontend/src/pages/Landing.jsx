@@ -28,9 +28,9 @@ export default function Landing() {
   const absoluteFavicon = getAbsoluteUrl(tenant?.favicon) || '/favicon.png';
   const absoluteOgImage = getAbsoluteUrl(tenant?.ogImage || tenant?.logo) || '/logo.png';
 
-  useDynamicBranding(tenant?.name || 'Kainlowkal', absoluteFavicon, {
+  useDynamicBranding(tenant?.name || "Weegol's", absoluteFavicon, {
     image: absoluteOgImage,
-    description: `Order from ${tenant?.name || 'Kainlowkal'} — Self-Service Kiosk`
+    description: `Order from ${tenant?.name || "Weegol's"} — Self-Service Kiosk`
   });
 
   useEffect(() => {
@@ -42,8 +42,8 @@ export default function Landing() {
 
   useEffect(() => {
     const init = async () => {
-      // Check for tenant from URL (defaulting to kainlowkal)
-      const tenantSlug = searchParams.get('tenant') || 'kainlowkal';
+      // Check for tenant from URL (defaulting to weegols)
+      const tenantSlug = searchParams.get('tenant') || 'weegols';
       try {
         const res = await getPublicTenant(tenantSlug);
         if (res.data.success) {
@@ -76,7 +76,7 @@ export default function Landing() {
     init();
   }, [searchParams]);
 
-  const tenantName = tenant ? tenant.name : 'Kainlowkal';
+  const tenantName = tenant ? tenant.name : "Weegol's";
   const menuLink = '/menu';
   const queueLink = '/queue';
   const portalLink = '/member-portal';
@@ -87,7 +87,8 @@ export default function Landing() {
   const [currentAssetIndex] = useState(0);
 
   if (loading) return <div className="min-h-screen bg-surface-900 flex items-center justify-center">
-    <div className="w-12 h-12 border-4 border-[#34d399] border-t-transparent rounded-full animate-spin"></div>
+    <img src="/logo.png" alt="Weegol's" style={{width:'100px',height:'100px',objectFit:'contain',borderRadius:'20px',animation:'pulse 2s infinite'}} />
+    <div className="text-white font-semibold mt-4" style={{fontFamily:'Outfit,sans-serif'}}>Loading...</div>
   </div>;
 
   const isSuspended = tenant && !tenant.active && user?.role !== 'superadmin';
@@ -211,21 +212,16 @@ export default function Landing() {
 
         <div className="flex justify-center mb-10">
           <div className="w-24 h-24 md:w-32 md:h-32 bg-white/10 backdrop-blur-md rounded-[40px] overflow-hidden flex items-center justify-center shadow-2xl border border-white/20 animate-scale-in ring-8 ring-white/5">
-            <img src="/logo.png" className="w-full h-full object-cover" alt="Kainlowkal" />
+            <img src="/logo.png" className="w-full h-full object-cover" alt="Weegol's" />
           </div>
         </div>
 
         <h1 className="font-heading text-5xl md:text-8xl lg:text-9xl text-white leading-none mb-8 tracking-tighter flex items-center justify-center flex-wrap gap-x-0">
-          <span className="italic font-normal text-surface-200">Kain</span>
-          <span className="not-italic font-black text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.4)]">
-            lowkal
-          </span>
+          <span className="italic font-normal text-surface-200">Weegol's</span>
         </h1>
 
         <p className="text-lg md:text-2xl text-surface-300 max-w-2xl mx-auto font-medium leading-relaxed mb-12">
-          {tenant?.landing_description || (tenant?.slug === 'burger-palace'
-            ? 'The most royal burgers in the palace. Order now and skip the wait!'
-            : 'comfort food, made local')}
+          {tenant?.landing_description || 'Chicken Inato — Grilled to Perfection Since 1990 🔥'}
         </p>
 
         {/* Action Buttons */}

@@ -6,7 +6,7 @@ export default function InstallPWA() {
   const [showPrompt, setShowPrompt] = useState(false);
   const [isIOS, setIsIOS] = useState(false);
   const [searchParams] = useSearchParams();
-  const tenant = searchParams.get('tenant') || 'Kainlowkal';
+  const tenant = searchParams.get('tenant') || 'weegols';
   const tenantName = tenant.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   useEffect(() => {

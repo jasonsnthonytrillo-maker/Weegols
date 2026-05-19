@@ -97,7 +97,7 @@ export default function AdminDashboard() {
         {/* Desktop Only Header */}
         <div className="hidden md:flex p-6 border-b border-surface-800 justify-between items-center">
           <h1 className="font-heading text-xl font-black tracking-tight text-white flex items-center gap-2">
-            <img src="/logo.png" className="w-8 h-8 rounded-lg object-cover bg-white shadow-md border border-white/10" alt="Kainlowkal" />
+            <img src="/logo.png" className="w-8 h-8 rounded-lg object-cover bg-white shadow-md border border-white/10" alt="Weegol's" />
             <span className="truncate">{user?.tenantName || 'ADMIN'}</span>
           </h1>
         </div>
@@ -129,7 +129,7 @@ export default function AdminDashboard() {
         {/* Header */}
         <header className="bg-white border-b border-surface-200 px-6 py-4 flex items-center justify-between sticky top-0 z-20 shadow-sm flex-shrink-0">
           <div className="flex items-center gap-4">
-            <img src="/logo.png" className="w-10 h-10 rounded-xl object-cover bg-white shadow-sm border border-slate-100" alt="Kainlowkal" />
+            <img src="/logo.png" className="w-10 h-10 rounded-xl object-cover bg-white shadow-sm border border-slate-100" alt="Weegol's" />
             <div>
               <h1 className="font-heading text-lg font-bold text-surface-900 leading-tight">
                 {user?.tenantName || 'Store'} Management

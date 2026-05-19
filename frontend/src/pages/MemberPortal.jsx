@@ -36,7 +36,7 @@ export default function MemberPortal() {
   const { loginUser, logoutUser, user } = useAuth();
   const navigate = useNavigate();
 
-  const tenantSlug = searchParams.get('tenant') || 'kainlowkal';
+  const tenantSlug = searchParams.get('tenant') || 'weegols';
   const actionParam = searchParams.get('action');
 
   // Handle ?action=register
@@ -288,7 +288,7 @@ export default function MemberPortal() {
             <>
               <div className="text-center mb-10">
                 <div className="w-20 h-20 rounded-3xl overflow-hidden flex items-center justify-center mx-auto mb-6 shadow-xl shadow-primary-500/20 border-2 border-white/10">
-                  <img src="/logo.png" className="w-full h-full object-cover" alt="Kainlowkal" />
+                  <img src="/logo.png" className="w-full h-full object-cover" alt="Weegol's" />
                 </div>
                 <h1 className="text-3xl font-black text-slate-900 mb-2 tracking-tight">
                   {user ? `Welcome back, ${user.name.split(' ')[0]}!` : (mode === 'login' ? 'Welcome Back!' : (mode === 'verify' ? 'Verify Email' : 'Join the Club'))}

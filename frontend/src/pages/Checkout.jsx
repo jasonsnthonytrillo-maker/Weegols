@@ -68,7 +68,7 @@ export default function Checkout() {
   const { user, refreshUser } = useAuth();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const tenantSlug = searchParams.get('tenant') || 'kainlowkal';
+  const tenantSlug = searchParams.get('tenant') || 'weegols';
   const [branding, setBranding] = useState(null);
 
   const lang = localStorage.getItem('pos_lang') || 'en';

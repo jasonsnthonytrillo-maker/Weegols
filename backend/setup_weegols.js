@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const prisma = new PrismaClient();
 
 async function main() {
-  console.log('🚀 Wiping database and setting up KAINLOWKAL (Healthy & Low-Cal POS)...\n');
+  console.log('🚀 Wiping database and setting up WEEGOLS CHICKEN INATO POS...\n');
 
   // ===== 0. CLEAN WIPE DATABASE =====
   console.log('🧹 Step 0: Cleaning database...');
@@ -27,12 +27,12 @@ async function main() {
   console.log('📦 Step 1: Creating Tenant...');
   const tenant = await prisma.tenant.create({
     data: {
-      name: 'Kainlowkal',
-      slug: 'kainlowkal',
+      name: "Weegol's Chicken Inato",
+      slug: 'weegols',
       logo: '/logo.png',
       favicon: '/favicon.png',
-      primaryColor: '#10b981', // Emerald green (matches healthy & fresh theme)
-      secondaryColor: '#34d399' // Mint green
+      primaryColor: '#16a34a', // Green from logo
+      secondaryColor: '#dc2626' // Red from logo
     }
   });
   console.log(`✅ Tenant Created: "${tenant.name}" (ID: ${tenant.id})\n`);
@@ -53,12 +53,12 @@ async function main() {
   console.log(`✅ SuperAdmin Created: ${superadmin.email}\n`);
 
   // ===== 3. CREATE ADMIN USER FOR TENANT =====
-  console.log('🔑 Step 3: Creating Admin for Kainlowkal...');
+  console.log('🔑 Step 3: Creating Admin for Weegols...');
   const adminPass = await bcrypt.hash('admin123', 12);
   const admin = await prisma.user.create({
     data: {
       tenantId: tenant.id,
-      email: 'admin@kainlowkal.com',
+      email: 'admin@weegols.com',
       password: adminPass,
       name: 'Store Manager',
       role: 'admin',
@@ -67,39 +67,31 @@ async function main() {
   });
   console.log(`✅ Admin Created: ${admin.email}\n`);
 
-  // ===== 4. SEED KAINLOWKAL CATEGORIES & PRODUCTS =====
-  console.log('🌱 Step 4: Seeding Low-Cal & Keto Products...');
+  // ===== 4. SEED WEEGOLS CATEGORIES & PRODUCTS =====
+  console.log('🌱 Step 4: Seeding Chicken Inato Products...');
   const categoriesData = [
     {
-      name: 'Keto & Low-Carb Bowls', icon: '🥗', description: 'Premium high-protein & grain-free options',
+      name: 'Chicken Inato Meals', icon: '🍗', description: 'Classic grilled chicken meals',
       products: [
-        { name: 'Keto Beef Salpicao Bowl', price: 245, description: 'Tender beef cubes sauteed in olive oil & garlic, served with cauliflower rice (Keto-Friendly)', stock: 999 },
-        { name: 'High-Protein Chicken Pesto Bowl', price: 210, description: 'Grilled chicken breast, mixed greens, cherry tomatoes, and house-made walnut pesto (Low Cal)', stock: 999 },
-        { name: 'Vegan Tofu Quinoa Bowl', price: 195, description: 'Pan-seared organic tofu, protein-rich quinoa, roasted carrots, avocado, and tahini dressing (Vegan)', stock: 999 }
+        { name: 'Paa (Leg/Thigh) with Rice', price: 115, description: 'Grilled chicken leg and thigh piece with unlimited rice', stock: 999 },
+        { name: 'Pecho (Breast/Wing) with Rice', price: 125, description: 'Grilled chicken breast and wing piece with unlimited rice', stock: 999 },
+        { name: 'Half Chicken Meal', price: 210, description: 'Half grilled chicken inato with rice', stock: 999 }
       ]
     },
     {
-      name: 'Keto Pastries & Snacks', icon: '🥐', description: 'Guilt-free sugar-free treats',
+      name: 'Sizzling & Extras', icon: '🔥', description: 'Sizzling plates and side dishes',
       products: [
-        { name: 'Sugar-Free Almond Croissant', price: 115, description: 'Flaky low-carb pastry made with almond flour and organic sweetener', stock: 24 },
-        { name: 'Keto Chocolate Avocado Brownie', price: 95, description: 'Decadent, rich fudgy brownie sweetened with stevia (Gluten-Free)', stock: 20 },
-        { name: 'Low-Cal Chia Seed Pudding', price: 85, description: 'Organic chia seeds soaked in unsweetened coconut milk, topped with fresh berries (Vegan)', stock: 30 }
+        { name: 'Sizzling Sisig', price: 150, description: 'Classic pork sisig on a sizzling plate', stock: 50 },
+        { name: 'Atchara (Papaya Relish)', price: 20, description: 'Sweet and sour pickled papaya', stock: 100 },
+        { name: 'Extra Rice', price: 25, description: 'One cup of steamed rice', stock: 999 }
       ]
     },
     {
-      name: 'Detox & Sugar-Free Drinks', icon: '🥤', description: 'Freshly pressed organic beverages',
+      name: 'Beverages', icon: '🥤', description: 'Refreshing drinks to pair with meals',
       products: [
-        { name: 'Green Detox Juice', price: 135, description: 'Freshly pressed cucumber, celery, green apple, ginger, and organic lemon', stock: 999 },
-        { name: 'Keto Avocado Cream Smoothie', price: 165, description: 'Rich blended fresh avocado, unsweetened almond milk, and erythritol', stock: 999 },
-        { name: 'Organic Hibiscus Iced Tea', price: 95, description: 'Cold-brewed organic hibiscus tea, lightly sweetened with stevia (Zero Calorie)', stock: 999 }
-      ]
-    },
-    {
-      name: 'Guilt-Free Cafe Classics', icon: '☕', description: 'Zero-sugar & dairy-free energy boosters',
-      products: [
-        { name: 'Bulletproof Keto Coffee', price: 145, description: 'Fresh espresso blended with grass-fed butter and MCT oil for sustained energy', stock: 999 },
-        { name: 'Almond Milk Cafe Latte', price: 135, description: 'Double shot espresso with steamed unsweetened almond milk (Dairy-Free)', stock: 999 },
-        { name: 'Sugar-Free Matcha Latte', price: 155, description: 'Ceremonial grade matcha whisked with oat milk and organic stevia', stock: 999 }
+        { name: 'Calamansi Juice', price: 45, description: 'Freshly squeezed calamansi juice', stock: 999 },
+        { name: 'Iced Tea', price: 35, description: 'House blend iced tea', stock: 999 },
+        { name: 'Softdrinks', price: 30, description: 'Assorted canned sodas', stock: 999 }
       ]
     }
   ];
@@ -132,8 +124,8 @@ async function main() {
   console.log('\n⚙️  Step 5: Creating System Settings...');
   const settings = [
     { key: 'points_rate', value: '500' },
-    { key: 'store_hours', value: '7AM - 9PM' },
-    { key: 'order_prefix', value: 'KL' } // KainLowkal
+    { key: 'store_hours', value: '10AM - 10PM' },
+    { key: 'order_prefix', value: 'WG' } // Weegols
   ];
   for (const s of settings) {
     await prisma.systemSetting.create({
@@ -144,13 +136,13 @@ async function main() {
 
   // ===== DONE =====
   console.log('═══════════════════════════════════════════');
-  console.log('🎉 KAINLOWKAL SETUP COMPLETE!');
+  console.log('🎉 WEEGOLS SETUP COMPLETE!');
   console.log('═══════════════════════════════════════════');
   console.log(`\n📧 SuperAdmin Login:`);
   console.log(`   Email:    superadmin@elevatepos.com`);
   console.log(`   Password: superadmin123`);
-  console.log(`\n📧 Admin Login (Kainlowkal):`);
-  console.log(`   Email:    admin@kainlowkal.com`);
+  console.log(`\n📧 Admin Login (Weegols):`);
+  console.log(`   Email:    admin@weegols.com`);
   console.log(`   Password: admin123`);
   console.log('═══════════════════════════════════════════');
 }

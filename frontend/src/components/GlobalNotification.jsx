@@ -14,7 +14,7 @@ export default function GlobalNotification() {
   const { onEvent } = useSocket();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const tenantSlug = searchParams.get('tenant') || 'kainlowkal';
+  const tenantSlug = searchParams.get('tenant') || 'weegols';
   const { user } = useAuth();
 
   // Helper to safely clear the chime loop

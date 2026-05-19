@@ -18,7 +18,7 @@ export default function CustomerAccount() {
   const [passwordMessage, setPasswordMessage] = useState({ type: '', text: '' });
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const tenantSlug = searchParams.get('tenant') || 'kainlowkal';
+  const tenantSlug = searchParams.get('tenant') || 'weegols';
 
   useEffect(() => {
     if (!authLoading && !user) {
