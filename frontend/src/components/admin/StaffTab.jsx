@@ -177,8 +177,8 @@ export default function StaffTab() {
 
       {/* Create Modal */}
       {showModal && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto">
-          <div className="bg-white w-full max-w-md rounded-[32px] shadow-2xl animate-bounce-in overflow-y-auto max-h-[90vh]" onClick={e => e.stopPropagation()}>
+        <div className="fixed inset-0 z-[100] flex items-start justify-center p-4 bg-slate-900/40 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white w-full max-w-md rounded-[32px] shadow-2xl animate-bounce-in my-auto" onClick={e => e.stopPropagation()}>
             <div className="p-6 sm:p-8">
               <div className="flex justify-between items-center mb-8">
                 <h3 className="text-2xl font-black text-slate-900">Add New User</h3>
