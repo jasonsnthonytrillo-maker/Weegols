@@ -223,7 +223,7 @@ export default function Landing() {
         </h1>
 
         <p className="text-lg md:text-2xl text-surface-300 max-w-2xl mx-auto font-medium leading-relaxed mb-12">
-          {tenant?.landing_description || 'Chicken Inato — Grilled to Perfection Since 1990 🔥'}
+          {tenant?.landing_description || 'Grilled to Perfection Since 1990 🔥'}
         </p>
 
         {/* Action Buttons */}

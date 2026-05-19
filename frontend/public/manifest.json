@@ -1,7 +1,7 @@
 {
   "short_name": "Weegol's",
   "name": "Weegol's POS",
-  "description": "Weegol's Chicken Inato POS System",
+  "description": "Weegol's POS System",
   "icons": [
     {
       "src": "/favicon.ico",

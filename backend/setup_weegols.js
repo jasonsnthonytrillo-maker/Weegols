@@ -27,7 +27,7 @@ async function main() {
   console.log('📦 Step 1: Creating Tenant...');
   const tenant = await prisma.tenant.create({
     data: {
-      name: "Weegol's Chicken Inato",
+      name: "Weegol's",
       slug: 'weegols',
       logo: '/logo.png',
       favicon: '/favicon.png',
