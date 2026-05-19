@@ -246,10 +246,10 @@ export default function Checkout() {
             <div className="grid grid-cols-3 gap-3">
               {PAYMENT_METHODS.map(m => (
                 <button key={m.id} type="button" onClick={() => setPaymentMethod(m.id)}
-                  className={`p-3 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 font-bold text-xs sm:text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white shadow-xl' : 'border-surface-200 hover:border-primary-300 text-surface-600 bg-white'}`}
+                  className={`h-20 px-3 rounded-2xl border-2 flex flex-col items-center justify-center gap-2 font-bold text-xs sm:text-sm transition-all ${paymentMethod === m.id ? 'border-transparent text-white shadow-xl' : 'border-surface-200 hover:border-primary-300 text-surface-600 bg-white'}`}
                   style={paymentMethod === m.id ? { backgroundColor: brandingColor, borderColor: brandingColor, color: '#ffffff' } : {}}>
                   {m.id === 'cash' ? (
-                    <div className="flex flex-col items-center gap-1">
+                    <div className="flex flex-col items-center gap-1 justify-center w-full">
                       <div className="h-8 flex items-center justify-center text-2xl">{m.icon}</div>
                       <span>{m.label}</span>
                     </div>

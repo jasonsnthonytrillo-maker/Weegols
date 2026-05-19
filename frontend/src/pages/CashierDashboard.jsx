@@ -557,19 +557,19 @@ export default function CashierDashboard() {
                                   key={m.id}
                                   type="button"
                                   onClick={() => setPaymentData(p => ({ ...p, method: m.id }))}
-                                  className={`py-2 px-3 rounded-2xl border flex flex-col sm:flex-row items-center justify-center gap-2 font-bold text-xs transition-all ${
+                                  className={`h-12 px-3 rounded-2xl border flex items-center justify-center gap-2 font-bold text-xs transition-all ${
                                     paymentData.method === m.id
                                       ? 'bg-slate-900 border-slate-950 text-white shadow-lg'
                                       : 'bg-white border-surface-200 text-surface-700 hover:bg-surface-50 hover:border-surface-300'
                                   }`}
                                 >
                                   {m.id === 'cash' ? (
-                                    <div className="flex items-center gap-1.5">
+                                    <div className="flex items-center gap-1.5 justify-center w-full">
                                       {m.icon}
                                       <span>{m.label}</span>
                                     </div>
                                   ) : (
-                                    <div className="bg-white px-3 py-1 rounded-lg flex items-center justify-center shadow-sm border border-slate-100 max-h-7">
+                                    <div className="bg-white px-3 py-1.5 rounded-xl flex items-center justify-center shadow-sm border border-slate-100 max-h-8 w-full max-w-[80px]">
                                       {m.icon}
                                     </div>
                                   )}
