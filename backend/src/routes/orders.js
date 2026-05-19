@@ -2,11 +2,10 @@ const express = require('express');
 const router = express.Router();
 const prisma = require('../lib/prisma');
 
-// Generate unique order number like POS-240001
+// Generate unique order number (exactly 5 numbers, e.g. 28491)
 function generateOrderNumber() {
-  const prefix = 'POS';
-  const random = Math.floor(100000 + Math.random() * 900000);
-  return `${prefix}-${random}`;
+  const random = Math.floor(10000 + Math.random() * 90000);
+  return `${random}`;
 }
 // GET /api/orders/history — Get logged-in customer's order history
 const { authenticate } = require('../middleware/auth');

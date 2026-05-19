@@ -5,8 +5,11 @@ const jwt = require('jsonwebtoken');
 const { authenticate } = require('../middleware/auth');
 const prisma = require('../lib/prisma');
 const { OAuth2Client } = require('google-auth-library');
-const GOOGLE_CLIENT_ID = '34858099230-uvb83hlp4q6rdje145o0tkqlqgjdsuno.apps.googleusercontent.com';
-const googleClient = new OAuth2Client(GOOGLE_CLIENT_ID);
+const GOOGLE_CLIENT_IDS = [
+  '859996932265-a3j2hgsmlnrq2i2v47rqvklprm4454sd.apps.googleusercontent.com',
+  '34858099230-uvb83hlp4q6rdje145o0tkqlqgjdsuno.apps.googleusercontent.com'
+];
+const googleClient = new OAuth2Client();
 const { sendOTPEmail } = require('../lib/mailer');
 
 
@@ -334,7 +337,7 @@ router.post('/google', async (req, res) => {
 
     const ticket = await googleClient.verifyIdToken({
       idToken: token,
-      audience: GOOGLE_CLIENT_ID,
+      audience: GOOGLE_CLIENT_IDS,
     });
     const payload = ticket.getPayload();
     const { email, name } = payload;
