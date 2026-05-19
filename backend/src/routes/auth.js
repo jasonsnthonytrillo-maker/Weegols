@@ -20,7 +20,7 @@ router.post('/request-otp', async (req, res) => {
   try {
     // Determine tenant
     let tenantId = null;
-    let tenantName = 'Weegol's';
+    let tenantName = "Weegol's";
     if (tenantSlug && tenantSlug !== 'weegols') {
       const tenantRecord = await prisma.tenant.findUnique({ where: { slug: tenantSlug } });
       if (tenantRecord) {
